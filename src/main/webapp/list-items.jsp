@@ -83,6 +83,7 @@
 	<!-- 				<script src="static/js/datatable-poreskegrupe.js"></script> -->
 	<!-- Page-Level Demo Scripts - Tables - Use for reference -->
 	<script>
+	
 		function ConfirmDelete() {
 			var x = confirm("Are you sure you want to delete?");
 			if (x)
