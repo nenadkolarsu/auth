@@ -23,7 +23,7 @@
 									<a href="${new_articles_types}">
 										<button
 											class='btn btn-lg btn-success button-novi border-radius-0'>
-											<span class='glyphicon glyphicon-file'></span> Novi
+											<span class='glyphicon glyphicon-file'></span> New
 										</button>
 									</a> <a href="${print_articles_types}">
 										<button
@@ -64,7 +64,7 @@
 
 	<%@ include file="scripts.jsp"%>
 	<c:choose>
-		<c:when test="${title == 'Vrste artikala'}">
+		<c:when test="${title == 'Type of articles'}">
 			<script src="static/js/datatable-vrsteartikala.js"></script>
 		</c:when>
 		<c:when test="${title == 'Jedinice mere'}">

@@ -1,5 +1,6 @@
 package com.hellokoding.auth.controllers;
 
+import java.util.Date;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -62,6 +63,9 @@ public class ItemsController {
 		VrsteArtikala aa = new VrsteArtikala();
 		// da bi default aktivan bio checked
 	    aa.setAktivan(true);
+	    Date date = new Date();
+	    aa.setTimestamp(date);
+	    
 		return new ModelAndView("itemForm", "vrsteArtikala", aa);
 		// return new ModelAndView("vrstePaletaUnosForm", "vrstePaleta", new VrstePaleta());
 	}	
