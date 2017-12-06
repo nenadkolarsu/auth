@@ -12,10 +12,13 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.persistence.PrePersist;
+import javax.persistence.PreUpdate;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
+import org.hibernate.validator.constraints.NotEmpty;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
@@ -24,6 +27,10 @@ import com.fasterxml.jackson.annotation.JsonManagedReference;
 @Entity
 @Table(name="poreske_grupe")
 public class PoreskeGrupe implements Serializable {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -1765436317574032962L;
 	@Id
     @GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id; 
@@ -47,6 +54,8 @@ public class PoreskeGrupe implements Serializable {
     }
     
     // name
+	@Column(name = "name")
+	@NotEmpty 
     public String getName() {
         return name;
     }
@@ -63,6 +72,8 @@ public class PoreskeGrupe implements Serializable {
         this.id = id;
     }
     
+	@Column(name = "code")
+	@NotEmpty    
     public String getCode() {
 		return code;
 	}
@@ -70,6 +81,8 @@ public class PoreskeGrupe implements Serializable {
 	public void setCode(String code) {
 		this.code = code;
 	}
+	
+	@Column(name = "remark")
 
 	public String getRemark() {
 		return remark;
@@ -78,6 +91,8 @@ public class PoreskeGrupe implements Serializable {
 	public void setRemark(String remark) {
 		this.remark = remark;
 	}
+	
+	@Column(name = "akcija")
 
 	public String getAkcija() {
 		return akcija;
@@ -91,7 +106,16 @@ public class PoreskeGrupe implements Serializable {
 	public Date getTimestamp() {
 		return timestamp;
 	}
-
+	
+    @PrePersist
+    protected void onCreate() {
+    	timestamp = new Date();
+    }
+    
+    @PreUpdate
+    protected void onUpdate() {
+    	timestamp = new Date();
+    }
 	public void setTimestamp(Date timestamp) {
 		this.timestamp = timestamp;
 	}

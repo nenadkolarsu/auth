@@ -12,6 +12,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.persistence.PrePersist;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.Fetch;
@@ -98,7 +99,11 @@ public class VrsteArtikala implements Serializable {
 	public Date getTimestamp() {
 		return timestamp;
 	}
-
+    @PrePersist
+    protected void onCreate() {
+    	timestamp = new Date();
+    }
+    
 	public void setTimestamp(Date timestamp) {
 		this.timestamp = timestamp;
 	}

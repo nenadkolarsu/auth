@@ -20,12 +20,12 @@
 						<div class='panel-body'>
 							<div class='row spacer-bottom'>
 								<div class='col-lg-12'>
-									<a href="${new_articles_types}">
+									<a href="${new_item}">
 										<button
 											class='btn btn-lg btn-success button-novi border-radius-0'>
 											<span class='glyphicon glyphicon-file'></span> New
 										</button>
-									</a> <a href="${print_articles_types}">
+									</a> <a href="${print_item}">
 										<button
 											class='btn btn-lg btn-success button-novi border-radius-0 margin-left-10'>
 											<span class='fa fa-print'></span> Print
@@ -67,10 +67,10 @@
 		<c:when test="${title == 'Type of articles'}">
 			<script src="static/js/datatable-vrsteartikala.js"></script>
 		</c:when>
-		<c:when test="${title == 'Jedinice mere'}">
+		<c:when test="${title == 'Units of measure'}">
 			<script src="static/js/datatable-jedinicemera.js"></script>
 		</c:when>
-		<c:when test="${title == 'Klasifikacije'}">
+		<c:when test="${title == 'Classifications'}">
 			<script src="static/js/datatable-klasifikacije.js"></script>
 		</c:when>
 		<c:when test="${title == 'Poreske grupe'}">

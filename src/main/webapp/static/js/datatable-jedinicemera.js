@@ -4,10 +4,10 @@ $(document).ready( function () {
 			"sAjaxDataProp": "",
 			"order": [[ 0, "asc" ]],
 			"aoColumns": [
-			      { "mData": "uid"},
+			      { "mData": "id"},
 		          { "mData": "code" },
 				  { "mData": "name" },
-				  { "mData": "remark" },
+				  { "mData": "remark" },            
 				  { "mData": "timestamp"},
 				  { "mData": "aktivan" },
 				  { "mData": "akcija"}

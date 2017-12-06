@@ -1,5 +1,6 @@
 package com.hellokoding.auth.controllers;
 
+import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
 
@@ -9,10 +10,17 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.hellokoding.auth.model.JediniceMera;
+import com.hellokoding.auth.model.Klasifikacije;
+import com.hellokoding.auth.model.PoreskeGrupe;
 import com.hellokoding.auth.model.VrsteArtikala;
 import com.hellokoding.auth.model.VrstePaleta;
+import com.hellokoding.auth.service.JediniceMeraService;
+import com.hellokoding.auth.service.KlasifikacijeService;
+import com.hellokoding.auth.service.PoreskeGrupeService;
 import com.hellokoding.auth.service.VrsteArtikalaService;
 import com.hellokoding.auth.service.VrstePaletaService;
+import com.ibm.icu.text.SimpleDateFormat;
 
 @RestController
 public class RestsController {
@@ -21,6 +29,12 @@ public class RestsController {
 	private VrstePaletaService vrstePaletaService;
 	@Autowired
 	private VrsteArtikalaService vrsteArtikalaService;
+	@Autowired
+	private KlasifikacijeService klasifikacijeService;
+	@Autowired
+	private JediniceMeraService jediniceMeraService;
+	@Autowired
+	private PoreskeGrupeService poreskeGrupeService;	
 	
 	@RequestMapping(path="/vrstepaleta", method=RequestMethod.GET)
 	public List<VrstePaleta> getAllPalletsTypes(){
@@ -49,6 +63,58 @@ public class RestsController {
 
 		return aa; 
 	}
+	
+	@RequestMapping(path="/jedinicemera", method=RequestMethod.GET)
+	public List<JediniceMera> getJsonUnitsOfMeasure(){
+		
+		List<JediniceMera> aa = jediniceMeraService.getAllJediniceMera();
+	
+		 for (Iterator iterator = aa.iterator(); iterator.hasNext();) {
+			 JediniceMera jediniceMera = (JediniceMera) iterator.next();
+			 jediniceMera.setAkcija("<a href=\"update_units_of_measure.html?id=" + jediniceMera.getId() + "\"> " + "<i class=\"fa fa-pencil-square-o edit-delete-icon\"></i> </a> "
+					+ "            <a href=\"delete_units_of_measure.html?id=" + jediniceMera.getId() + "\" Onclick=\"return ConfirmDelete();\"> " + "<i class=\"fa fa-trash-o edit-delete-icon\"></i> </a>");
+//		        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("MM/dd/yyyy' 'HH:mm:ss:S");
+//		        Date tt = jediniceMera.getTimestamp();
+//		        jediniceMera.setTimestamp(simpleDateFormat.format(tt));
+//		        System.out.println(simpleDateFormat.format(timestamp));
+		}
 
+		return aa; 
+	}
 
+	@RequestMapping(path="/klasifikacije", method=RequestMethod.GET)
+	public List<Klasifikacije> getJsonklasifikacije(){
+		
+		List<Klasifikacije> aa = klasifikacijeService.getAllKlasifikacije();
+	
+		 for (Iterator iterator = aa.iterator(); iterator.hasNext();) {
+			 Klasifikacije klasifikacije = (Klasifikacije) iterator.next();
+			 klasifikacije.setAkcija("<a href=\"update-classifications.html?id=" + klasifikacije.getId() + "\"> " + "<i class=\"fa fa-pencil-square-o edit-delete-icon\"></i> </a> "
+					+ "            <a href=\"delete-classifications.html?id=" + klasifikacije.getId() + "\" Onclick=\"return ConfirmDelete();\"> " + "<i class=\"fa fa-trash-o edit-delete-icon\"></i> </a>");
+//		        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("MM/dd/yyyy' 'HH:mm:ss:S");
+//		        Date tt = jediniceMera.getTimestamp();
+//		        jediniceMera.setTimestamp(simpleDateFormat.format(tt));
+//		        System.out.println(simpleDateFormat.format(timestamp));
+		}
+
+		return aa; 
+	}
+
+	@RequestMapping(path="/poreskegrupe", method=RequestMethod.GET)
+	public List<PoreskeGrupe> getJsonporeskegrupe(){
+		
+		List<PoreskeGrupe> aa = poreskeGrupeService.getAllPoreskeGrupe();
+	
+		 for (Iterator iterator = aa.iterator(); iterator.hasNext();) {
+			 PoreskeGrupe poreskeGrupe = (PoreskeGrupe) iterator.next();
+			 poreskeGrupe.setAkcija("<a href=\"update-poreskeGrupe.html?id=" + poreskeGrupe.getId() + "\"> " + "<i class=\"fa fa-pencil-square-o edit-delete-icon\"></i> </a> "
+					+ "            <a href=\"delete-poreskeGrupe.html?id=" + poreskeGrupe.getId() + "\" Onclick=\"return ConfirmDelete();\"> " + "<i class=\"fa fa-trash-o edit-delete-icon\"></i> </a>");
+//		        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("MM/dd/yyyy' 'HH:mm:ss:S");
+//		        Date tt = jediniceMera.getTimestamp();
+//		        jediniceMera.setTimestamp(simpleDateFormat.format(tt));
+//		        System.out.println(simpleDateFormat.format(timestamp));
+		}
+
+		return aa; 
+	}
 }

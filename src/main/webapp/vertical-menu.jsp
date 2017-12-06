@@ -13,8 +13,9 @@
 						
 						<li><a href='list-magacini.jsp'>Magacini</a></li>
 						<li><a href='/articles_types.html'>Vrste artikala</a></li>
-						<li><a href='list-items.jsp'>Poreske grupe</a></li>
-						<li><a href='list-items.jsp'>Jedinice mere</a></li>
+						<li><a href='/classifications.html'>Klasifikacije</a></li>
+						<li><a href='/poreskeGrupe.html'>Poreske grupe</a></li>
+						<li><a href='/units_of_measure.html'>Jedinice mere</a></li>
 						<li><a href='list-items.jsp'>Artikli</a></li>
 					</ul>
 				</li>

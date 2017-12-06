@@ -3,6 +3,7 @@ package com.hellokoding.auth.controllers;
 import com.hellokoding.auth.model.Magacini;
 import com.hellokoding.auth.repository.MagaciniRepository;
 import com.hellokoding.auth.service.ICarService;
+import com.hellokoding.auth.service.JediniceMeraService;
 import com.hellokoding.auth.service.MagaciniService;
 import com.hellokoding.auth.service.VrstePaletaService;
 
@@ -34,6 +35,8 @@ public class PrintController {
     private MagaciniService magaciniService;
     @Autowired
     private MagaciniRepository magaciniRepository;
+    @Autowired
+    private JediniceMeraService jediniceMeraService;
     
     @RequestMapping(path = "/pdf", method = RequestMethod.GET)
     public ModelAndView report() {
@@ -85,4 +88,18 @@ public class PrintController {
 
         return new ModelAndView(view, params);
     }
+    
+//    @RequestMapping(path = "/units_of_measure_pdf.html", method = RequestMethod.GET)
+//    public ModelAndView report4() {
+//
+//        JasperReportsPdfView view = new JasperReportsPdfView();
+//        view.setUrl("classpath:rpt_Items1.jrxml");
+//        view.setApplicationContext(appContext);
+//       
+//
+//        Map<String, Object> params = new HashMap<>();
+//        params.put("datasource", jediniceMeraService.getAllJediniceMera());
+//        params.put("title", "Jedinice Mera");
+//        return new ModelAndView(view, params);
+//    }
 }

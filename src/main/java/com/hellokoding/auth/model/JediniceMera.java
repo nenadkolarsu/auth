@@ -12,10 +12,16 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.persistence.PrePersist;
+import javax.persistence.PreUpdate;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
+import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
+import org.hibernate.validator.constraints.NotEmpty;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
@@ -24,6 +30,10 @@ import com.fasterxml.jackson.annotation.JsonManagedReference;
 @Entity
 @Table(name="jedinice_mera")
 public class JediniceMera implements Serializable {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -8290483697171232072L;
 	@Id
     @GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id; 
@@ -47,6 +57,8 @@ public class JediniceMera implements Serializable {
     }
     
     // name
+	@Column(name = "name")
+	@NotEmpty  
     public String getName() {
         return name;
     }
@@ -63,7 +75,8 @@ public class JediniceMera implements Serializable {
         this.id = id;
     }
  
-    
+	@Column(name = "code")
+	@NotEmpty   
     public String getCode() {
 		return code;
 	}
@@ -71,7 +84,8 @@ public class JediniceMera implements Serializable {
 	public void setCode(String code) {
 		this.code = code;
 	}
-
+	
+	@Column(name = "remark")
 	public String getRemark() {
 		return remark;
 	}
@@ -79,7 +93,8 @@ public class JediniceMera implements Serializable {
 	public void setRemark(String remark) {
 		this.remark = remark;
 	}
-
+	
+	@Column(name = "akcija")
 	public String getAkcija() {
 		return akcija;
 	}
@@ -88,11 +103,24 @@ public class JediniceMera implements Serializable {
 		this.akcija = akcija;
 	}
 	
+
+    
+	@Temporal(TemporalType.TIMESTAMP)
+	@CreationTimestamp
 	@Column(name="timestamp", columnDefinition="TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
 	public Date getTimestamp() {
 		return timestamp;
 	}
-
+	
+    @PrePersist
+    protected void onCreate() {
+    	timestamp = new Date();
+    }
+    
+    @PreUpdate
+    protected void onUpdate() {
+    	timestamp = new Date();
+    }  
 	public void setTimestamp(Date timestamp) {
 		this.timestamp = timestamp;
 	}

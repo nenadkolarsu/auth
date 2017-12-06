@@ -1,13 +1,16 @@
 package com.hellokoding.auth.controllers;
 
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 //import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -19,8 +22,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.view.jasperreports.JasperReportsPdfView;
 
 import com.hellokoding.auth.dao.VrstePaletaDao;
+import com.hellokoding.auth.model.CompanyDetails;
 import com.hellokoding.auth.model.VrsteArtikala;
 //import com.hellokoding.auth.model.User;
 import com.hellokoding.auth.model.VrstePaleta;
@@ -36,6 +41,11 @@ public class ItemsController {
 	@Autowired
 	private VrsteArtikalaService vrsteArtikalaService;
 
+    @Autowired
+    private ApplicationContext appContext;
+    
+	@Autowired
+	private CompanyDetails companyDetails;
 	// @Autowired
 	// private SecurityService securityService;
 
@@ -50,8 +60,8 @@ public class ItemsController {
 
 		request.setAttribute("mode", "MODE_TASKS");
 		request.setAttribute("title", "Type of articles");
-		request.setAttribute("new_articles_types", "/articles_types_new.html");
-		request.setAttribute("print_articles_types", "/articles_types_pdf.html");
+		request.setAttribute("new_item", "/articles_types_new.html");
+		request.setAttribute("print_item", "/articles_types_pdf.html");
 		return "list-items";
 	}	
 
@@ -116,19 +126,38 @@ public class ItemsController {
 		request.setAttribute("vrsteArtikala", vrsteArtikalaService.findByOne(id));
 		request.setAttribute("mode", "MODE_UPDATE");
 		request.setAttribute("title", "Update Type of articles");
+		
 		return "itemForm";
 	}
     
 
 	@RequestMapping(value = "/delete-vrste-artikala.html")
 	public String deleteTypeAricles(@RequestParam Long id, HttpServletRequest request) {
-//      request.setAttribute("vrstePaleta", vrstePaletaDao.findByUid(id)); //  dao.getAllProdajeId("where id = " + sid));
-//		vrstePaletaService.save(vrstePaleta);
+
 		vrsteArtikalaService.delete(id);
-		request.setAttribute("mode", "MODE_TASKS");
-		request.setAttribute("title", "Types of articles");
-		// return "vrstePaletaForm";
-		return "list-items";
-	}	
+//		request.setAttribute("mode", "MODE_TASKS");
+//		request.setAttribute("title", "Types of articles");
+//		request.setAttribute("new_articles_types", "/articles_types_new.html");
+//		request.setAttribute("print_articles_types", "/articles_types_pdf.html");
+//		return "list-items";
+		return "redirect:articles_types.html";
+	}
+	
+    @RequestMapping(path = "/articles_types_pdf.html", method = RequestMethod.GET)
+    public ModelAndView reportTypesofarticles() {
+        
+        JasperReportsPdfView view = new JasperReportsPdfView();
+        view.setUrl("classpath:rpt_Items1.jrxml");
+        view.setApplicationContext(appContext);
+       
+
+        Map<String, Object> params = new HashMap<>();
+        params.put("datasource", vrsteArtikalaService.getAllVrsteArtikala());
+        params.put("title", "Types of articles");
+        params.put("company",  companyDetails.companyDetails1);
+        params.put("adress",  companyDetails.companyDetails2);
+        params.put("city",  companyDetails.companyDetails3);
+        return new ModelAndView(view, params);
+    }
 	
 }
