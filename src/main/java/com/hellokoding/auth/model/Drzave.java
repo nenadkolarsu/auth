@@ -13,12 +13,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.PrePersist;
-import javax.persistence.PreUpdate;
 import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 
-import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
 import org.hibernate.validator.constraints.NotEmpty;
@@ -28,12 +24,12 @@ import org.json.JSONObject;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity
-@Table(name="jedinice_mera")
-public class JediniceMera implements Serializable {
+@Table(name="drzave")
+public class Drzave implements Serializable {
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = -8290483697171232072L;
+	private static final long serialVersionUID = -4361643849564698178L;
 	@Id
     @GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id; 
@@ -44,23 +40,26 @@ public class JediniceMera implements Serializable {
 	private Date timestamp;
 	private boolean aktivan;
     
- //   @OneToMany(mappedBy = "jediniceMera", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    @OneToMany(mappedBy = "jediniceMera", orphanRemoval = true, cascade = CascadeType.PERSIST)
-    
-    @Fetch (FetchMode.SELECT)
+ //   @OneToMany(mappedBy = "vrsteArtikala", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+//    @Fetch (FetchMode.SELECT)
+//    @OneToMany(mappedBy = "drzave", orphanRemoval = true, 
+//    cascade = CascadeType.PERSIST)
+	
+    @OneToMany(cascade = CascadeType.ALL, 
+    mappedBy = "drzave", orphanRemoval = true)  
     @JsonManagedReference
-    private Set<Artikli> artikli;
+    private Set<PttBrojevi> pttBrojevi;
     
-    public JediniceMera(){
+    public Drzave(){
     }
     
-    public JediniceMera(String name){
+    public Drzave(String name){
     	this.name = name;
     }
     
     // name
 	@Column(name = "name")
-	@NotEmpty  
+	@NotEmpty
     public String getName() {
         return name;
     }
@@ -68,7 +67,7 @@ public class JediniceMera implements Serializable {
     public void setName(String name) {
         this.name = name;
     }
-    
+ 
     public Long getId() {
         return id;
     }
@@ -76,9 +75,9 @@ public class JediniceMera implements Serializable {
     public void setId(Long id) {
         this.id = id;
     }
- 
+    
 	@Column(name = "code")
-	@NotEmpty   
+	@NotEmpty  
     public String getCode() {
 		return code;
 	}
@@ -105,24 +104,15 @@ public class JediniceMera implements Serializable {
 		this.akcija = akcija;
 	}
 	
-
-    
-	@Temporal(TemporalType.TIMESTAMP)
-	@CreationTimestamp
 	@Column(name="timestamp", columnDefinition="TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
 	public Date getTimestamp() {
 		return timestamp;
 	}
-	
     @PrePersist
     protected void onCreate() {
     	timestamp = new Date();
     }
     
-    @PreUpdate
-    protected void onUpdate() {
-    	timestamp = new Date();
-    }  
 	public void setTimestamp(Date timestamp) {
 		this.timestamp = timestamp;
 	}
@@ -137,17 +127,27 @@ public class JediniceMera implements Serializable {
 	}
 
 	// articles
-    public void setArtikli(Set<Artikli> artikli){
-    	this.artikli = artikli;
+    public void setPttBrojevi(Set<PttBrojevi> pttBrojevi){
+    	this.pttBrojevi = pttBrojevi;
     }
     
-    public Set<Artikli> getArtikli(){
-    	return this.artikli;
+    public Set<PttBrojevi> getPttBrojevi(){
+    	return this.pttBrojevi;
     }
 
+//    public void addPttBrojevi(PttBrojevi pttBrojevi) {
+//    	pttBrojevi.add(pttBrojevi);
+//    	pttBrojevi.setPost(this);
+//    }
+// 
+//    public void removeComment(Comment comment) {
+//        comment.setPost(null);
+//        this.comments.remove(comment);
+//    }
+    
 	@Override
 	public String toString() {
-		return "JediniceMera [id=" + id + ", name=" + name + ", artikli=" + artikli + "]";
+		return "VrsteArtikala [id=" + id + ", name=" + name + ", pttBrojevi=" + pttBrojevi + "]";
 	}
     
 //    public String toString(){
@@ -157,13 +157,13 @@ public class JediniceMera implements Serializable {
 //        
 //        JSONArray productArray = new JSONArray();
 //        if(this. != null){
-//            this.artikli.forEach(artikli->{
+//            this.pttBrojevi.forEach(pttBrojevi->{
 //                JSONObject subJson = new JSONObject();
-//                subJson.put("name", artikli.getName());
-//                artikliArray.put(subJson);
+//                subJson.put("name", pttBrojevi.getName());
+//                pttBrojeviArray.put(subJson);
 //            });
 //        }
-//        jsonInfo.put("artikli", artikliArray);
+//        jsonInfo.put("pttBrojevi", pttBrojeviArray);
 //        info = jsonInfo.toString();
 //        return info;
 //    }

@@ -20,12 +20,12 @@
 						<div class='panel-body'>
 							<div class='row spacer-bottom'>
 								<div class='col-lg-12'>
-									<a href="${new_item}">
+									<a href="/new-artikli.html">
 										<button
 											class='btn btn-lg btn-success button-novi border-radius-0'>
 											<span class='glyphicon glyphicon-file'></span> New
 										</button>
-									</a> <a href="${print_item}">
+									</a> <a href="artikli_pdf.html">
 										<button
 											class='btn btn-lg btn-success button-novi border-radius-0 margin-left-10'>
 											<span class='fa fa-print'></span> Print
@@ -34,7 +34,7 @@
 								</div>
 							</div>
 							<div class='row spacer-bottom border-bottom'></div>
-							<table id="itemsTable"
+							<table id="artikliTable"
 								class="display table table-striped table-bordered table-hover border-radius-0">
 								<!-- Header Table -->
 								<thead>
@@ -42,10 +42,10 @@
 										<th style="width: 5%;">Id</th>
 										<th style="width: 7%;">Šifra</th>
 										<th style="width: 30%;">Naziv</th>
-										<th style="width: 27%;">Napomena</th>
-										<th style="width: 10%;">Vreme</th>
+										<th style="width: 28%;">Napomena</th>
+										<th style="width: 10%;">Tip</th>
 										<th style="width: 6%;">Act</th>
-										<th style="width: 15%;">Akcija</th>
+										<th style="width: 14%;">Akcija</th>
 									</tr>
 								</thead>
 							</table>
@@ -63,23 +63,9 @@
 	</div>
 
 	<%@ include file="scripts.jsp"%>
-	<c:choose>
-		<c:when test="${title == 'Type of articles'}">
-			<script src="static/js/datatable-vrsteartikala.js"></script>
-		</c:when>
-		<c:when test="${title == 'Units of measure'}">
-			<script src="static/js/datatable-jedinicemera.js"></script>
-		</c:when>
-		<c:when test="${title == 'Classifications'}">
-			<script src="static/js/datatable-klasifikacije.js"></script>
-		</c:when>
-		<c:when test="${title == 'Poreske grupe'}">
-			<script src="static/js/datatable-poreskegrupe.js"></script>
-		</c:when>
-				<c:when test="${title == 'Types of warehouse'}">
-			<script src="static/js/datatable-vrstemagacina.js"></script>
-		</c:when>
-	</c:choose>
+
+			<script src="static/js/datatable-artikli.js"></script>
+
 
 	<!-- 		<script src="static/js/datatable-klasifikacije.js"></script> -->
 	>

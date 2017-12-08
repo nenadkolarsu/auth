@@ -10,15 +10,19 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.hellokoding.auth.model.Artikli;
 import com.hellokoding.auth.model.JediniceMera;
 import com.hellokoding.auth.model.Klasifikacije;
 import com.hellokoding.auth.model.PoreskeGrupe;
 import com.hellokoding.auth.model.VrsteArtikala;
+import com.hellokoding.auth.model.VrsteMagacina;
 import com.hellokoding.auth.model.VrstePaleta;
+import com.hellokoding.auth.service.ArtikliService;
 import com.hellokoding.auth.service.JediniceMeraService;
 import com.hellokoding.auth.service.KlasifikacijeService;
 import com.hellokoding.auth.service.PoreskeGrupeService;
 import com.hellokoding.auth.service.VrsteArtikalaService;
+import com.hellokoding.auth.service.VrsteMagacinaService;
 import com.hellokoding.auth.service.VrstePaletaService;
 import com.ibm.icu.text.SimpleDateFormat;
 
@@ -35,6 +39,10 @@ public class RestsController {
 	private JediniceMeraService jediniceMeraService;
 	@Autowired
 	private PoreskeGrupeService poreskeGrupeService;	
+	@Autowired
+	private ArtikliService artikliService;	
+	@Autowired
+	private VrsteMagacinaService vrsteMagacinaService;
 	
 	@RequestMapping(path="/vrstepaleta", method=RequestMethod.GET)
 	public List<VrstePaleta> getAllPalletsTypes(){
@@ -113,6 +121,39 @@ public class RestsController {
 //		        Date tt = jediniceMera.getTimestamp();
 //		        jediniceMera.setTimestamp(simpleDateFormat.format(tt));
 //		        System.out.println(simpleDateFormat.format(timestamp));
+		}
+
+		return aa; 
+	}
+	
+	@RequestMapping(path="/artikli", method=RequestMethod.GET)
+	public List<Artikli> getJsonArtikli(){
+		
+		List<Artikli> aa = artikliService.getAllArtikli();
+	
+		 for (Iterator iterator = aa.iterator(); iterator.hasNext();) {
+			 Artikli artikli = (Artikli) iterator.next();
+			 artikli.setVrste_artikala_naziv(artikli.getVrsteArtikala().getName());
+			 artikli.setAkcija("<a href=\"update-artikli.html?id=" + artikli.getId() + "\"> " + "<i class=\"fa fa-pencil-square-o edit-delete-icon\"></i> </a> "
+					+ "            <a href=\"delete-artikli.html?id=" + artikli.getId() + "\" Onclick=\"return ConfirmDelete();\"> " + "<i class=\"fa fa-trash-o edit-delete-icon\"></i> </a>");
+//		        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("MM/dd/yyyy' 'HH:mm:ss:S");
+//		        Date tt = jediniceMera.getTimestamp();
+//		        jediniceMera.setTimestamp(simpleDateFormat.format(tt));
+//		        System.out.println(simpleDateFormat.format(timestamp));
+		}
+
+		return aa; 
+	}
+	
+	@RequestMapping(path="/vrstemagacina", method=RequestMethod.GET)
+	public List<VrsteMagacina> getJsonVrsteMagacina(){
+		
+		List<VrsteMagacina> aa = vrsteMagacinaService.getAllVrsteMagacina();
+	
+		 for (Iterator iterator = aa.iterator(); iterator.hasNext();) {
+			 VrsteMagacina vrsteMagacina = (VrsteMagacina) iterator.next();
+			 vrsteMagacina.setAkcija("<a href=\"update-vrste-magacina.html?id=" + vrsteMagacina.getId() + "\"> " + "<i class=\"fa fa-pencil-square-o edit-delete-icon\"></i> </a> "
+					+ "            <a href=\"delete-vrste-magacina.html?id=" + vrsteMagacina.getId() + "\" Onclick=\"return ConfirmDelete();\"> " + "<i class=\"fa fa-trash-o edit-delete-icon\"></i> </a>");
 		}
 
 		return aa; 

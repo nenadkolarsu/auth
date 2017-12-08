@@ -13,8 +13,11 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.PrePersist;
+import javax.persistence.PreUpdate;
 import javax.persistence.Table;
 
+import org.hibernate.validator.constraints.NotEmpty;
 import org.json.JSONObject;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
@@ -94,6 +97,8 @@ public class Artikli implements Serializable {
         this.id = id;
     }
     
+	@Column(name = "akcija")  	
+   
     public String getAkcija() {
         return akcija;
     }
@@ -102,6 +107,8 @@ public class Artikli implements Serializable {
         this.akcija = akcija;
     }
     // name
+	@Column(name = "name")  	
+	@NotEmpty 
     public String getName() {
         return name;
     }
@@ -110,6 +117,8 @@ public class Artikli implements Serializable {
         this.name = name;
     }
     
+	@Column(name = "aktivan")  	
+ 
     public Boolean getAktivan() {
         return aktivan;
     }
@@ -122,10 +131,23 @@ public class Artikli implements Serializable {
         return timestamp;
     }
 
+    @PrePersist
+    protected void onCreate() {
+    	timestamp = new Date();
+    }
+    
+    @PreUpdate
+    protected void onUpdate() {
+    	timestamp = new Date();
+    }
+    
     public void setTimestamp(Date timestamp) {
         this.timestamp = timestamp;
     }   
     
+	@Column(name = "code")  	
+	@NotEmpty 
+	
     public String getCode() {
 		return code;
 	}
@@ -134,6 +156,7 @@ public class Artikli implements Serializable {
 		this.code = code;
 	}
 	
+	@Column(name = "code1")	
 	public String getCode1() {
 		return code1;
 	}
@@ -141,7 +164,7 @@ public class Artikli implements Serializable {
 	public void setCode1(String code1) {
 		this.code1 = code1;
 	}
-
+	@Column(name = "code2")
 	public String getCode2() {
 		return code2;
 	}
@@ -149,7 +172,7 @@ public class Artikli implements Serializable {
 	public void setCode2(String code2) {
 		this.code2 = code2;
 	}
-
+	@Column(name = "remark")	
 	public String getRemark() {
 		return remark;
 	}
@@ -158,7 +181,7 @@ public class Artikli implements Serializable {
 		this.remark = remark;
 	}
 		
-
+	@Column(name = "vrste_artikala_naziv")
 	public String getVrste_artikala_naziv() {
 		return vrste_artikala_naziv;
 	}
@@ -166,7 +189,7 @@ public class Artikli implements Serializable {
 	public void setVrste_artikala_naziv(String vrste_artikala_naziv) {
 		this.vrste_artikala_naziv = vrste_artikala_naziv;
 	}
-
+	@Column(name = "slika")
 	public String getSlika() {
 		return slika;
 	}
@@ -174,7 +197,7 @@ public class Artikli implements Serializable {
 	public void setSlika(String slika) {
 		this.slika = slika;
 	}
-
+	@Column(name = "video")
 	public String getVideo() {
 		return video;
 	}
@@ -182,7 +205,7 @@ public class Artikli implements Serializable {
 	public void setVideo(String video) {
 		this.video = video;
 	}
-
+	@Column(name = "zvuk")
 	public String getZvuk() {
 		return zvuk;
 	}

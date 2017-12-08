@@ -41,7 +41,9 @@ public class PoreskeGrupe implements Serializable {
 	private Date timestamp;
 	private boolean aktivan;
     
-    @OneToMany(mappedBy = "poreskeGrupe", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+ //   @OneToMany(mappedBy = "poreskeGrupe", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "poreskeGrupe", orphanRemoval = true, cascade = CascadeType.PERSIST)
+    
     @Fetch (FetchMode.SELECT)
     @JsonManagedReference
     private Set<Artikli> artikli;
@@ -116,6 +118,7 @@ public class PoreskeGrupe implements Serializable {
     protected void onUpdate() {
     	timestamp = new Date();
     }
+    
 	public void setTimestamp(Date timestamp) {
 		this.timestamp = timestamp;
 	}

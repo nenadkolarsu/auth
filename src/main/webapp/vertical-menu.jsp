@@ -16,7 +16,7 @@
 						<li><a href='/classifications.html'>Klasifikacije</a></li>
 						<li><a href='/poreskeGrupe.html'>Poreske grupe</a></li>
 						<li><a href='/units_of_measure.html'>Jedinice mere</a></li>
-						<li><a href='list-items.jsp'>Artikli</a></li>
+						<li><a href='/list-artikli.html'>Artikli</a></li>
 					</ul>
 				</li>
 				
@@ -31,7 +31,7 @@
 					<a href='#'><i class="fa fa-industry fa-fw"></i> Magacin<span class="fa arrow"></span></a>
 					<ul class="nav nav-second-level">
 						<li><a href='list-magacini.jsp'>Magacini</a></li>
-						<li><a href='#'>Magacinska prijemnica</a></li>
+						<li><a href='/warehouse_types.html'>Vrste magacina</a></li>
 						<li><a href='#'>Magacinska otpremnica</a></li>
 					</ul>
 				</li>
