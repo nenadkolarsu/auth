@@ -14,6 +14,7 @@ import com.hellokoding.auth.model.Artikli;
 import com.hellokoding.auth.model.JediniceMera;
 import com.hellokoding.auth.model.Klasifikacije;
 import com.hellokoding.auth.model.PoreskeGrupe;
+import com.hellokoding.auth.model.User;
 import com.hellokoding.auth.model.VrsteArtikala;
 import com.hellokoding.auth.model.VrsteMagacina;
 import com.hellokoding.auth.model.VrstePaleta;
@@ -21,6 +22,7 @@ import com.hellokoding.auth.service.ArtikliService;
 import com.hellokoding.auth.service.JediniceMeraService;
 import com.hellokoding.auth.service.KlasifikacijeService;
 import com.hellokoding.auth.service.PoreskeGrupeService;
+import com.hellokoding.auth.service.UserService;
 import com.hellokoding.auth.service.VrsteArtikalaService;
 import com.hellokoding.auth.service.VrsteMagacinaService;
 import com.hellokoding.auth.service.VrstePaletaService;
@@ -43,6 +45,8 @@ public class RestsController {
 	private ArtikliService artikliService;	
 	@Autowired
 	private VrsteMagacinaService vrsteMagacinaService;
+	@Autowired
+	private UserService userService;
 	
 	@RequestMapping(path="/vrstepaleta", method=RequestMethod.GET)
 	public List<VrstePaleta> getAllPalletsTypes(){
@@ -155,6 +159,16 @@ public class RestsController {
 			 vrsteMagacina.setAkcija("<a href=\"update-vrste-magacina.html?id=" + vrsteMagacina.getId() + "\"> " + "<i class=\"fa fa-pencil-square-o edit-delete-icon\"></i> </a> "
 					+ "            <a href=\"delete-vrste-magacina.html?id=" + vrsteMagacina.getId() + "\" Onclick=\"return ConfirmDelete();\"> " + "<i class=\"fa fa-trash-o edit-delete-icon\"></i> </a>");
 		}
+
+		return aa; 
+	}
+	
+	@RequestMapping(path="/users", method=RequestMethod.GET)
+	public List<User> getJsonUsers(){
+		
+		List<User> aa = userService.getAllUsers();
+	
+
 
 		return aa; 
 	}

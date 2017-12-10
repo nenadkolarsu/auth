@@ -144,10 +144,12 @@ public class VrsteMagacina implements Serializable {
 //    	return this.magacini;
 //    }
     
-	
+    public List<Magacini> getMagacini(){
+    	return this.magacini;
+    }	
  //   public void setMagaciniAll(Set<Magacini> magacini) {
 	
-	@NotEmpty 	
+//	@NotEmpty 	
     public void setMagacini(List<Magacini> list) {
     	  if (this.magacini == null) {
     	    this.magacini = list;

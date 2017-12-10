@@ -70,7 +70,7 @@
 											<label class='font-awesome'>Vrsta artikala</label>
 
 											<form:select path="vrsteArtikala.id" class="form-control">
-												<form:option value="0" label="--- Select ---" />
+<%-- 												<form:option value="0" label="--- Select ---" /> --%>
 												<form:options items="${eDept}" />
 											</form:select>
 
@@ -84,7 +84,7 @@
 											<label class='font-awesome'>Poreska grupa</label>
 
 											<form:select path="poreskeGrupe.id" class="form-control">
-												<form:option value="0" label="--- Select ---" />
+<%-- 												<form:option value="0" label="--- Select ---" /> --%>
 												<form:options items="${ePg}" />
 											</form:select>
 
@@ -98,7 +98,7 @@
 											<label class='font-awesome'>Jedinica mere</label>
 
 											<form:select path="jediniceMera.id" class="form-control">
-												<form:option value="0" label="--- Select ---" />
+<%-- 												<form:option value="0" label="--- Select ---" /> --%>
 												<form:options items="${ePjm}" />
 											</form:select>
 
@@ -108,10 +108,10 @@
 										</div>	
 	
 												<div class="form-group"${error != null ? 'has-error' : ''}'>
-											<label class='font-awesome'>JKlasifikacija</label>
+											<label class='font-awesome'>Klasifikacija</label>
 
 											<form:select path="klasifikacije.id" class="form-control">
-												<form:option value="0" label="--- Select ---" />
+<%-- 												<form:option value="0" label="--- Select ---" /> --%>
 												<form:options items="${ePkl}" />
 											</form:select>
 

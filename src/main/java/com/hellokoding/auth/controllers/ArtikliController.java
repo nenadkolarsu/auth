@@ -10,6 +10,7 @@ import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -21,12 +22,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
-
+import org.springframework.web.servlet.view.jasperreports.JasperReportsPdfView;
 
 // import com.hellokoding.auth.dao.ArtikliDao;
 // import com.hellokoding.auth.dao.VrsteArtikalaDao;
 // import com.hellokoding.auth.model.User;
 import com.hellokoding.auth.model.Artikli;
+import com.hellokoding.auth.model.CompanyDetails;
 import com.hellokoding.auth.model.JediniceMera;
 import com.hellokoding.auth.model.Klasifikacije;
 import com.hellokoding.auth.model.PoreskeGrupe;
@@ -40,13 +42,20 @@ import com.hellokoding.auth.service.KlasifikacijeService;
 import com.hellokoding.auth.service.PoreskeGrupeService;
 import com.hellokoding.auth.validator.UserValidator;
 import com.hellokoding.auth.validator.VrstePaletaValidator;
-import com.mysql.jdbc.Connection;
+// import com.mysql.jdbc.Connection;
 
 @Controller
 public class ArtikliController {
 	
 	@Autowired
 	private ArtikliService artikliService;
+	
+    @Autowired
+    private ApplicationContext appContext;
+    
+	@Autowired
+	private CompanyDetails companyDetails;
+	
 //	ArtikliService artikliService = new ArtikliService();
 
 	// @Autowired
@@ -198,6 +207,23 @@ public class ArtikliController {
 //            int i = 0;
 //        }
         return kupci;
+    }
+	
+    @RequestMapping(path = "/artikli_pdf.html", method = RequestMethod.GET)
+    public ModelAndView reportPoreskeGrupe() {
+        
+        JasperReportsPdfView view = new JasperReportsPdfView();
+        view.setUrl("classpath:rpt_Items1.jrxml");
+        view.setApplicationContext(appContext);
+       
+
+        Map<String, Object> params = new HashMap<>();
+        params.put("datasource", artikliService.getAllArtikli());
+        params.put("title", "Artikli");
+        params.put("company",  companyDetails.companyDetails1);
+        params.put("adress",  companyDetails.companyDetails2);
+        params.put("city",  companyDetails.companyDetails3);
+        return new ModelAndView(view, params);
     }
 	
 }

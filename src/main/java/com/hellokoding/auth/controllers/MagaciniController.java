@@ -33,7 +33,7 @@ import com.hellokoding.auth.service.UserService;
 import com.hellokoding.auth.service.MagaciniService;
 import com.hellokoding.auth.validator.UserValidator;
 import com.hellokoding.auth.validator.VrstePaletaValidator;
-import com.mysql.jdbc.Connection;
+// import com.mysql.jdbc.Connection;
 
 @Controller
 public class MagaciniController {
