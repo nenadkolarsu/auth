@@ -1,5 +1,6 @@
 package com.hellokoding.auth.controllers;
 
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -11,6 +12,10 @@ import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
+import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -152,7 +157,7 @@ public class ArtikliController {
       
       Map<Long, String> pkl = new HashMap<>(); 
       Klasifikacije pk = new Klasifikacije();
-      List<Klasifikacije> pklList = klasifikacijeService.getAllKlasifikacije(); 
+      List<Klasifikacije> pklList = klasifikacijeService.getAllKlasifikacije(); // .getAllKlasifikacijeOrderByCode();
       for (Klasifikacije d : pklList) {
           pkl.put(d.getId(), d.getName());
       }
@@ -171,11 +176,19 @@ public class ArtikliController {
 	}
     
 //	
-
+@PreAuthorize("hasAnyRole('ADMIN')")
+    
 	@RequestMapping(value = "/delete-artikli.html")
 	public String deleteArtikli(@RequestParam Long id, HttpServletRequest request) {
 //      request.setAttribute("vrstePaleta", vrstePaletaDao.findByUid(id)); //  dao.getAllProdajeId("where id = " + sid));
 //		vrstePaletaService.save(vrstePaleta);
+ //      	boolean tt = SecurityContextHolder.getContext().getAuthentication().isAuthenticated();
+      	Authentication tt1 = SecurityContextHolder.getContext().getAuthentication();
+Collection<? extends GrantedAuthority> qq = tt1.getAuthorities();
+       	//    	if (principal instanceof User) {
+//    		return ((User) principal).getUsername();
+//    	}
+//    	return principal.toString();
 		artikliService.delete(id);
 		request.setAttribute("mode", "MODE_TASKS");
 		request.setAttribute("title", "Artikli");

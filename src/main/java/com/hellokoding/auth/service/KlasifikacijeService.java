@@ -17,4 +17,8 @@ public interface KlasifikacijeService {
 
 	public List<Klasifikacije> getAllKlasifikacije();
 
+
+
+	List<Klasifikacije> getAllKlasifikacijeOrderByCode();
+
 }

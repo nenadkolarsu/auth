@@ -26,7 +26,9 @@ public class KlasifikacijeServiceImpl implements KlasifikacijeService {
 	public List<Klasifikacije> getAllKlasifikacije() {
 		return klasifikacijeRepository.findAll();
 	}    
-    
+
+
+
     @Override
     public void save(Klasifikacije klasifikacije) {
 //        user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
@@ -49,6 +51,17 @@ public class KlasifikacijeServiceImpl implements KlasifikacijeService {
     {
     	klasifikacijeRepository.delete(id);
     }
+
+
+
+
+
+
+	@Override
+	public List<Klasifikacije> getAllKlasifikacijeOrderByCode() {
+		// TODO Auto-generated method stub
+		return null;
+	}
     
 
 

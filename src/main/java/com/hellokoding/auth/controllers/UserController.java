@@ -91,6 +91,11 @@ public class UserController {
 
     }
     
+    @RequestMapping(value="/403")
+    public String Error403(){
+        return "403";
+    }
+    
     private String getLoggedUserName(ModelMap model) {
     	
     	Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
