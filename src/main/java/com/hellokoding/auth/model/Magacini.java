@@ -13,6 +13,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.PrePersist;
+import javax.persistence.PreUpdate;
 import javax.persistence.Table;
 
 import org.json.JSONObject;
@@ -101,7 +103,16 @@ public class Magacini implements Serializable {
     public Date getTimestamp() {
         return timestamp;
     }
-
+	
+    @PrePersist
+    protected void onCreate() {
+    	timestamp = new Date();
+    }
+    
+    @PreUpdate
+    protected void onUpdate() {
+    	timestamp = new Date();
+    }  
     public void setTimestamp(Date timestamp) {
         this.timestamp = timestamp;
     }   

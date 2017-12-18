@@ -13,6 +13,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.PrePersist;
+import javax.persistence.PreUpdate;
 import javax.persistence.Table;
 
 import org.json.JSONObject;
@@ -38,25 +40,27 @@ public class PttBrojevi implements Serializable {
     private String akcija;
     private Boolean aktivan;
     private Date timestamp;
+    private Long drzava_id;
     private String drzava_naziv;
     private String slika;
     private String video;
     private String zvuk;
     
     
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "pttBrojevi_id")
-  //  @JsonIgnore
-    @JsonBackReference
-    private Drzave drzave;
+//    @ManyToOne(fetch = FetchType.EAGER)
+//    @JoinColumn(name = "pttBrojevi_id")
+//  //  @JsonIgnore
+//    @JsonBackReference
+//    
+//    private Drzave drzave;
     
     public PttBrojevi(){
     }
     
-    public PttBrojevi(String name, Drzave drzave){
-    	this.name = name;
-    	this.drzave = drzave;
-    }
+//    public PttBrojevi(String name, Drzave drzave){
+//    	this.name = name;
+//    	this.drzave = drzave;
+//    }
     
     public Long getId() {
         return id;
@@ -73,6 +77,7 @@ public class PttBrojevi implements Serializable {
     public void setAkcija(String akcija) {
         this.akcija = akcija;
     }
+    
     // name
     public String getName() {
         return name;
@@ -93,7 +98,16 @@ public class PttBrojevi implements Serializable {
     public Date getTimestamp() {
         return timestamp;
     }
-
+    @PrePersist
+    protected void onCreate() {
+    	timestamp = new Date();
+    }
+    
+    @PreUpdate
+    protected void onUpdate() {
+    	timestamp = new Date();
+    }  
+    
     public void setTimestamp(Date timestamp) {
         this.timestamp = timestamp;
     }   
@@ -114,13 +128,13 @@ public class PttBrojevi implements Serializable {
 		this.remark = remark;
 	}
 		
-	public String getDrzava_naziv() {
-		return drzava_naziv;
-	}
-
-	public void setDrzava_naziv(String drzava_naziv) {
-		this.drzava_naziv = drzava_naziv;
-	}
+//	public String getDrzava_naziv() {
+//		return drzava_naziv;
+//	}
+//
+//	public void setDrzava_naziv(String drzava_naziv) {
+//		this.drzava_naziv = drzava_naziv;
+//	}
 
 	public String getSlika() {
 		return slika;
@@ -145,25 +159,43 @@ public class PttBrojevi implements Serializable {
 	public void setZvuk(String zvuk) {
 		this.zvuk = zvuk;
 	}
+	
+	
 
-	// drzave  
-	public void setDrzava(Drzave drzave){
-    	this.drzave = drzave;
-    }
+//	// drzave  
+//	public void setDrzava(Drzave drzave){
+//    	this.drzave = drzave;
+//    }
+//    
+//    public Drzave getDrzava(){
+//    	return this.drzave;
+//    }
     
-    public Drzave getDrzava(){
-    	return this.drzave;
-    }
-    
-    public String toString(){
+    public Long getDrzava_id() {
+		return drzava_id;
+	}
+
+	public void setDrzava_id(Long drzava_id) {
+		this.drzava_id = drzava_id;
+	}
+
+	public String getDrzava_naziv() {
+		return drzava_naziv;
+	}
+
+	public void setDrzava_naziv(String drzava_naziv) {
+		this.drzava_naziv = drzava_naziv;
+	}
+
+	public String toString(){
     	String info = "";
     	
         JSONObject jsonInfo = new JSONObject();
         jsonInfo.put("name",this.name);
         
-        JSONObject drzavaObj = new JSONObject();
-        drzavaObj.put("name", this.drzave.getName());
-        jsonInfo.put("drzava", drzavaObj);
+//        JSONObject drzavaObj = new JSONObject();
+//        drzavaObj.put("name", this.drzave.getName());
+//        jsonInfo.put("drzava", drzavaObj);
         
         info = jsonInfo.toString();
         return info;

@@ -13,6 +13,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.PrePersist;
+import javax.persistence.PreUpdate;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.Fetch;
@@ -39,16 +40,16 @@ public class Drzave implements Serializable {
 	private String akcija;
 	private Date timestamp;
 	private boolean aktivan;
+	private String slika;
+	private String video;
+	private String zvuk;
     
  //   @OneToMany(mappedBy = "vrsteArtikala", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 //    @Fetch (FetchMode.SELECT)
 //    @OneToMany(mappedBy = "drzave", orphanRemoval = true, 
 //    cascade = CascadeType.PERSIST)
 	
-    @OneToMany(cascade = CascadeType.ALL, 
-    mappedBy = "drzave", orphanRemoval = true)  
-    @JsonManagedReference
-    private Set<PttBrojevi> pttBrojevi;
+
     
     public Drzave(){
     }
@@ -112,6 +113,10 @@ public class Drzave implements Serializable {
     protected void onCreate() {
     	timestamp = new Date();
     }
+    @PreUpdate
+    protected void onUpdate() {
+    	timestamp = new Date();
+    }  
     
 	public void setTimestamp(Date timestamp) {
 		this.timestamp = timestamp;
@@ -126,14 +131,15 @@ public class Drzave implements Serializable {
 		this.aktivan = aktivan;
 	}
 
-	// articles
-    public void setPttBrojevi(Set<PttBrojevi> pttBrojevi){
-    	this.pttBrojevi = pttBrojevi;
-    }
-    
-    public Set<PttBrojevi> getPttBrojevi(){
-    	return this.pttBrojevi;
-    }
+
+//	// pttBrojevi
+//    public void setPttBrojevi(Set<PttBrojevi> pttBrojevi){
+//    	this. = pttBrojevi;
+//    }
+//    
+//    public Set<PttBrojevi> getPttBrojevi(){
+//    	return this.pttBrojevi;
+//    }
 
 //    public void addPttBrojevi(PttBrojevi pttBrojevi) {
 //    	pttBrojevi.add(pttBrojevi);
@@ -145,9 +151,33 @@ public class Drzave implements Serializable {
 //        this.comments.remove(comment);
 //    }
     
+	public String getSlike() {
+		return slika;
+	}
+
+	public void setSlike(String slika) {
+		this.slika = slika;
+	}
+
+	public String getVideo() {
+		return video;
+	}
+
+	public void setVideo(String video) {
+		this.video = video;
+	}
+
+	public String getZvuk() {
+		return zvuk;
+	}
+
+	public void setZvuk(String zvuk) {
+		this.zvuk = zvuk;
+	}
+
 	@Override
 	public String toString() {
-		return "VrsteArtikala [id=" + id + ", name=" + name + ", pttBrojevi=" + pttBrojevi + "]";
+		return "VrsteArtikala [id=" + id + ", name=" + name  + "]";
 	}
     
 //    public String toString(){

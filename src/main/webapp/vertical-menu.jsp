@@ -32,7 +32,7 @@
 					<a href='#'><i class='fa fa-users fa-fw'></i> Komitenti<span class='fa arrow'></span></a>
 					<ul class='nav nav-second-level'>
 						<li><a href='list-partners.php'>Komitenti</a></li>
-
+						<li><a href='/states.html'>Drzave</a></li>
 					</ul>
 				</li>
 				

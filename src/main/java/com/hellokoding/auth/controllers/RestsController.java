@@ -1,5 +1,6 @@
 package com.hellokoding.auth.controllers;
 
+import java.util.Calendar;
 import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
@@ -11,13 +12,17 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.hellokoding.auth.model.Artikli;
+import com.hellokoding.auth.model.Drzave;
 import com.hellokoding.auth.model.JediniceMera;
 import com.hellokoding.auth.model.Klasifikacije;
 import com.hellokoding.auth.model.PoreskeGrupe;
+import com.hellokoding.auth.model.PttBrojevi;
 import com.hellokoding.auth.model.User;
 import com.hellokoding.auth.model.VrsteArtikala;
 import com.hellokoding.auth.model.VrsteMagacina;
 import com.hellokoding.auth.model.VrstePaleta;
+import com.hellokoding.auth.repository.DrzaveRepository;
+import com.hellokoding.auth.repository.ZipCodesRepository;
 import com.hellokoding.auth.service.ArtikliService;
 import com.hellokoding.auth.service.JediniceMeraService;
 import com.hellokoding.auth.service.KlasifikacijeService;
@@ -47,6 +52,10 @@ public class RestsController {
 	private VrsteMagacinaService vrsteMagacinaService;
 	@Autowired
 	private UserService userService;
+	@Autowired
+	private DrzaveRepository drzaveRepository;
+	@Autowired
+	private ZipCodesRepository zipCodesRepository;
 	
 	@RequestMapping(path="/vrstepaleta", method=RequestMethod.GET)
 	public List<VrstePaleta> getAllPalletsTypes(){
@@ -172,4 +181,53 @@ public class RestsController {
 
 		return aa; 
 	}
+	
+	@RequestMapping(path="/states", method=RequestMethod.GET)
+	public List<Drzave> getJsonStates(){
+		
+		List<Drzave> aa = drzaveRepository.findAllByOrderByIdDesc();
+	
+		 for (Iterator iterator = aa.iterator(); iterator.hasNext();) {
+			 Drzave drzave = (Drzave) iterator.next();
+			 drzave.setAkcija("<a href=\"update_states.html?id=" + drzave.getId() + "\"> " + "<i class=\"fa fa-pencil-square-o edit-delete-icon\"></i> </a> "
+					+ "            <a href=\"delete_states.html?id=" + drzave.getId() + "\" Onclick=\"return ConfirmDelete();\"> " + "<i class=\"fa fa-trash-o edit-delete-icon\"></i> </a>");
+			 
+		        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy'");
+//		        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy' 'HH:mm:ss:S");
+
+		        Date tt = drzave.getTimestamp();
+		        drzave.setVideo(simpleDateFormat.format(tt));
+
+		}
+
+		return aa; 
+	}
+	
+	@RequestMapping(path="/zipcodes", method=RequestMethod.GET)
+	public List<PttBrojevi> getJsonzipCodes(){
+		
+		List<PttBrojevi> aa = zipCodesRepository.findAllByOrderByIdDesc();
+	
+		 for (Iterator iterator = aa.iterator(); iterator.hasNext();) {
+			 PttBrojevi pttBrojevi = (PttBrojevi) iterator.next();
+			 pttBrojevi.setAkcija("<a href=\"update_zipCodes.html?id=" + pttBrojevi.getId() + "\"> " + "<i class=\"fa fa-pencil-square-o edit-delete-icon\"></i> </a> "
+					+ "            <a href=\"delete_zipCodes.html?id=" + pttBrojevi.getId() + "\" Onclick=\"return ConfirmDelete();\"> " + "<i class=\"fa fa-trash-o edit-delete-icon\"></i> </a>");
+			 
+		        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy'");
+//		        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy' 'HH:mm:ss:S");
+
+		        Date tt = pttBrojevi.getTimestamp();
+		        pttBrojevi.setVideo(simpleDateFormat.format(tt));
+
+		}
+
+		return aa; 
+	}	
+	
+	public static Calendar toCalendar(Date date){ 
+		  Calendar cal = Calendar.getInstance();
+		  cal.setTime(date);
+		  return cal;
+		}
+
 }
