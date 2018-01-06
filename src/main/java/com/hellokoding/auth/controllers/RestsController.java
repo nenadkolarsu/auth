@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.hellokoding.auth.model.Artikli;
 import com.hellokoding.auth.model.Dokument;
+import com.hellokoding.auth.model.DokumentStavke;
 import com.hellokoding.auth.model.Drzave;
 import com.hellokoding.auth.model.JediniceMera;
 import com.hellokoding.auth.model.Klasifikacije;
@@ -26,6 +27,7 @@ import com.hellokoding.auth.model.VrsteMagacina;
 import com.hellokoding.auth.model.VrstePaleta;
 import com.hellokoding.auth.repository.CostumersRepository;
 import com.hellokoding.auth.repository.DokumentRepository;
+import com.hellokoding.auth.repository.DokumentStavkeRepository;
 import com.hellokoding.auth.repository.DrzaveRepository;
 import com.hellokoding.auth.repository.TypesOfDocumentsRepository;
 import com.hellokoding.auth.repository.ZipCodesRepository;
@@ -66,6 +68,9 @@ public class RestsController {
 	private CostumersRepository costumersRepository;
 	@Autowired
 	private DokumentRepository dokumentRepository;
+	
+	@Autowired
+	private DokumentStavkeRepository dokumentStavkeRepository;
 	
 	@Autowired
 	private TypesOfDocumentsRepository typesOfDocumentsRepository;
@@ -281,6 +286,28 @@ public class RestsController {
 		return aa; 
 	}		
 	
+	@RequestMapping(path="/dokumentstavke/{id}", method=RequestMethod.GET)
+	public List<DokumentStavke> getJsonDokumentiStavke(){
+		
+		List<DokumentStavke> aa = dokumentStavkeRepository.findAll();
+	
+		 for (Iterator iterator = aa.iterator(); iterator.hasNext();) {
+			 DokumentStavke dokument = (DokumentStavke) iterator.next();
+			 dokument.setAkcija("<a href=\"update_dokumentistavke.html?id=" + dokument.getId() + "\"> " + "<i class=\"fa fa-pencil-square-o edit-delete-icon\"></i> </a> "
+					+ "            <a href=\"delete_dokumentistavke.html?id=" + dokument.getId() + "\" Onclick=\"return ConfirmDelete();\"> " + "<i class=\"fa fa-trash-o edit-delete-icon\"></i> </a>");
+			 
+//		        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy'");
+//		        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy' 'HH:mm:ss:S");
+
+//		        Date tt = dokument.getDatumVreme();
+//		        dokument.setVideo(simpleDateFormat.format(tt));
+
+		}
+
+		return aa; 
+	}		
+		
+	
 	@RequestMapping(path="/typesofdocuments", method=RequestMethod.GET)
 	public List<TypesOfDocuments> getJsonTypesOfDocuments(){
 		
@@ -291,7 +318,7 @@ public class RestsController {
 			 dokument.setAkcija("<a href=\"update_typesOfDocuments.html?id=" + dokument.getId() + "\"> " + "<i class=\"fa fa-pencil-square-o edit-delete-icon\"></i> </a> "
 					+ "            <a href=\"delete_typesOfDocuments.html?id=" + dokument.getId() + "\" Onclick=\"return ConfirmDelete();\"> " + "<i class=\"fa fa-trash-o edit-delete-icon\"></i> </a>");
 			 
-		        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy'");
+//		        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy'");
 //		        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy' 'HH:mm:ss:S");
 
 //		        Date tt = dokument.getDatumVreme();
