@@ -29,14 +29,25 @@
 					</ul>
 				</li>
 				<li>
-					<a href='#'><i class='fa fa-users fa-fw'></i> Komitenti<span class='fa arrow'></span></a>
+					<a href='#'><i class="fa fa-btc" aria-hidden="true"></i> Komitenti<span class='fa arrow'></span></a>
 					<ul class='nav nav-second-level'>
-						<li><a href='/partners.html'>Komitenti</a></li>
-						<li><a href='/states.html'>Drzave</a></li>
-						<li><a href='/statesDataAngularJS.html'>States angular</a></li>
+						<li><a href='/partner.html'>Komitenti</a></li>
+						<li><a href='/states.html'>Drzave</a></li>	
 						<li><a href='/zipCodes.html'>Zip codes</a></li>
+						<li><a href='/statesAngular.jsp'>States</a>
 					</ul>
 				</li>
+				
+				<li>
+
+				
+					<a href='#'><i class="fa fa-inr" aria-hidden="true"></i> Dokumenti<span class="fa arrow"></span></a>
+					<ul class="nav nav-second-level">
+						<li><a href='/dokument.html'>Dokument</a></li>
+						<li><a href='/typesOfDocuments.html'>Types of documents</a></li>
+						<li><a href='#'></a></li>
+					</ul>
+				</li>				
 				
 				<li>
 					<a href='#'><i class="fa fa-info fa-fw"></i> Login<span class="fa arrow"></span></a>
@@ -45,7 +56,22 @@
 						<li><a href='registration'><i class="fa fa-gear fa-fw"></i>Registration</a></li>
 						<li><a href="logout.html"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
 					</ul>
-				</li>				
+				</li>
+				<li>
+					<a href='#'><i class="fa fa-info fa-fw"></i> Examples<span class="fa arrow"></span></a>
+					<ul	class='nav nav-second-level'>
+
+						<li><a href='/test/angular/statesCRUD/statesDataAngularJS.html'>Angular states </a></li>
+						<li><a href='/test/angular/simplePagination/index.html'>Angular simple pagination</a></li>
+						<li><a href='/test/angular/angularPagination/index.html'>Angular pagination with search</a></li>
+					</ul>
+				</li>
+
+				<li>
+					<i class="fa fa-spinner fa-pulse fa-3x fa-fw"></i>
+					<span class="sr-only">Loading...</span>
+				</li>
+			
 			</ul>
 		</div>
 </div>

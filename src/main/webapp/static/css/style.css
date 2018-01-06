@@ -182,3 +182,19 @@ table.dataTable.no-footer{
 .login-form{
 	
 }
+
+.spacer-top-30{
+	margin-top:30px;
+}
+
+.horizontal-divider{
+	border-top:1px solid #333;
+}
+
+.textarea-resize-disable{
+	resize:none;
+}
+
+.sort-arrows{
+	font-size:10px;
+}

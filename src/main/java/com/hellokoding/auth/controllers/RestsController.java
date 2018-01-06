@@ -12,16 +12,22 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.hellokoding.auth.model.Artikli;
+import com.hellokoding.auth.model.Dokument;
 import com.hellokoding.auth.model.Drzave;
 import com.hellokoding.auth.model.JediniceMera;
 import com.hellokoding.auth.model.Klasifikacije;
+import com.hellokoding.auth.model.Partner;
 import com.hellokoding.auth.model.PoreskeGrupe;
 import com.hellokoding.auth.model.PttBrojevi;
+import com.hellokoding.auth.model.TypesOfDocuments;
 import com.hellokoding.auth.model.User;
 import com.hellokoding.auth.model.VrsteArtikala;
 import com.hellokoding.auth.model.VrsteMagacina;
 import com.hellokoding.auth.model.VrstePaleta;
+import com.hellokoding.auth.repository.CostumersRepository;
+import com.hellokoding.auth.repository.DokumentRepository;
 import com.hellokoding.auth.repository.DrzaveRepository;
+import com.hellokoding.auth.repository.TypesOfDocumentsRepository;
 import com.hellokoding.auth.repository.ZipCodesRepository;
 import com.hellokoding.auth.service.ArtikliService;
 import com.hellokoding.auth.service.JediniceMeraService;
@@ -56,6 +62,13 @@ public class RestsController {
 	private DrzaveRepository drzaveRepository;
 	@Autowired
 	private ZipCodesRepository zipCodesRepository;
+	@Autowired
+	private CostumersRepository costumersRepository;
+	@Autowired
+	private DokumentRepository dokumentRepository;
+	
+	@Autowired
+	private TypesOfDocumentsRepository typesOfDocumentsRepository;
 	
 	@RequestMapping(path="/vrstepaleta", method=RequestMethod.GET)
 	public List<VrstePaleta> getAllPalletsTypes(){
@@ -224,6 +237,70 @@ public class RestsController {
 		return aa; 
 	}	
 	
+	
+	@RequestMapping(path="/costumers", method=RequestMethod.GET)
+	public List<Partner> getJsonCostumers(){
+		
+		List<Partner> aa = costumersRepository.findAll();
+	
+		 for (Iterator iterator = aa.iterator(); iterator.hasNext();) {
+			 Partner partner = (Partner) iterator.next();
+			 partner.setAkcija("<a href=\"update_customer.html?id=" + partner.getId() + "\"> " + "<i class=\"fa fa-pencil-square-o edit-delete-icon\"></i> </a> "
+					+ "            <a href=\"delete_customer.html?id=" + partner.getId() + "\" Onclick=\"return ConfirmDelete();\"> " + "<i class=\"fa fa-trash-o edit-delete-icon\"></i> </a>");
+			 
+		        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy'");
+//		        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy' 'HH:mm:ss:S");
+
+		        Date tt = partner.getTimestamp();
+		        partner.setVideo(simpleDateFormat.format(tt));
+
+		}
+
+		return aa; 
+	}	
+
+	
+	@RequestMapping(path="/dokumenti", method=RequestMethod.GET)
+	public List<Dokument> getJsonDokumenti(){
+		
+		List<Dokument> aa = dokumentRepository.findAll();
+	
+		 for (Iterator iterator = aa.iterator(); iterator.hasNext();) {
+			 Dokument dokument = (Dokument) iterator.next();
+			 dokument.setAkcija("<a href=\"update_dokument.html?id=" + dokument.getId() + "\"> " + "<i class=\"fa fa-pencil-square-o edit-delete-icon\"></i> </a> "
+					+ "            <a href=\"delete_dokument.html?id=" + dokument.getId() + "\" Onclick=\"return ConfirmDelete();\"> " + "<i class=\"fa fa-trash-o edit-delete-icon\"></i> </a>");
+			 
+		        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy'");
+//		        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy' 'HH:mm:ss:S");
+
+		        Date tt = dokument.getDatumVreme();
+//		        dokument.setVideo(simpleDateFormat.format(tt));
+
+		}
+
+		return aa; 
+	}		
+	
+	@RequestMapping(path="/typesofdocuments", method=RequestMethod.GET)
+	public List<TypesOfDocuments> getJsonTypesOfDocuments(){
+		
+		List<TypesOfDocuments> aa = typesOfDocumentsRepository.findAll();
+	
+		 for (Iterator iterator = aa.iterator(); iterator.hasNext();) {
+			 TypesOfDocuments dokument = (TypesOfDocuments) iterator.next();
+			 dokument.setAkcija("<a href=\"update_typesOfDocuments.html?id=" + dokument.getId() + "\"> " + "<i class=\"fa fa-pencil-square-o edit-delete-icon\"></i> </a> "
+					+ "            <a href=\"delete_typesOfDocuments.html?id=" + dokument.getId() + "\" Onclick=\"return ConfirmDelete();\"> " + "<i class=\"fa fa-trash-o edit-delete-icon\"></i> </a>");
+			 
+		        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy'");
+//		        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy' 'HH:mm:ss:S");
+
+//		        Date tt = dokument.getDatumVreme();
+//		        dokument.setVideo(simpleDateFormat.format(tt));
+
+		}
+
+		return aa; 
+	}		
 	public static Calendar toCalendar(Date date){ 
 		  Calendar cal = Calendar.getInstance();
 		  cal.setTime(date);
