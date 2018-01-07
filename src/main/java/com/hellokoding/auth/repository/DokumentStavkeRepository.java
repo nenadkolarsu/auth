@@ -1,4 +1,5 @@
 package com.hellokoding.auth.repository;
+import com.hellokoding.auth.model.Dokument;
 import com.hellokoding.auth.model.DokumentStavke;
 import java.util.List;
 
@@ -8,6 +9,11 @@ public interface DokumentStavkeRepository extends JpaRepository<DokumentStavke, 
 //	Dokument findByNapomena(String dokument);
 	
 	List<DokumentStavke> findAllByOrderByIdDesc();
+	List<DokumentStavke> findByIdDokument(Dokument dokument);
+//	List<DokumentStavke> findByIdDokument(Long id);
+//	List<DokumentStavke> findByIdDokument(String alo);
+//	List<DokumentStavke> findByDokument(Dokument aa1);
+	
 	
 	
 }

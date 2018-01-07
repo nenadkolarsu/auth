@@ -10,7 +10,8 @@ app.filter('startFrom', function() {
     }
 });
 app.controller('dokumentStavkeCrtl', function ($scope, $http, $timeout) {
-    $http.get('http://localhost:8080/dokumentistavke/{id}').success(function(data){
+    $http.get('http://localhost:8080/dokumentstavketest}').success(function(data){
+//        $http.get('http://localhost:8080/dokumentstavke?itemid=2}').success(function(data){
         $scope.list = data;
         $scope.currentPage = 1; //current page
         $scope.entryLimit = 5; //max no of items to display in a page

@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.hellokoding.auth.model.Artikli;
@@ -273,7 +274,9 @@ public class RestsController {
 		 for (Iterator iterator = aa.iterator(); iterator.hasNext();) {
 			 Dokument dokument = (Dokument) iterator.next();
 			 dokument.setAkcija("<a href=\"update_dokument.html?id=" + dokument.getId() + "\"> " + "<i class=\"fa fa-pencil-square-o edit-delete-icon\"></i> </a> "
-					+ "            <a href=\"delete_dokument.html?id=" + dokument.getId() + "\" Onclick=\"return ConfirmDelete();\"> " + "<i class=\"fa fa-trash-o edit-delete-icon\"></i> </a>");
+					+ "    <a href=\"delete_dokument.html?id=" + dokument.getId() + "\" Onclick=\"return ConfirmDelete();\"> " + "<i class=\"fa fa-trash-o edit-delete-icon\"></i> </a>"
+					+  "<a href=\"www.w3schools.com\">Visit W3Schools</a> "
+					+ "     <a href=\"view_dokument_items.html?id=" + dokument.getId()  + "\"> " + "<i class=\"fa fa-id-card-o\"></i> </a>");
 			 
 		        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy'");
 //		        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy' 'HH:mm:ss:S");
@@ -286,28 +289,43 @@ public class RestsController {
 		return aa; 
 	}		
 	
-	@RequestMapping(path="/dokumentstavke/{id}", method=RequestMethod.GET)
-	public List<DokumentStavke> getJsonDokumentiStavke(){
+	@RequestMapping(path="/dokumentstavke", method=RequestMethod.GET)
+	public List<DokumentStavke> getJsonDokumentiStavke(@RequestParam(value="itemid") Long id){
+
+		Dokument aa1 = dokumentRepository.findOne(id);
 		
-		List<DokumentStavke> aa = dokumentStavkeRepository.findAll();
-	
+		// netreba definisati findByIdDokument u querijima defoltno postoji
+		List<DokumentStavke> aa = dokumentStavkeRepository.findByIdDokument(aa1);
+
 		 for (Iterator iterator = aa.iterator(); iterator.hasNext();) {
 			 DokumentStavke dokument = (DokumentStavke) iterator.next();
 			 dokument.setAkcija("<a href=\"update_dokumentistavke.html?id=" + dokument.getId() + "\"> " + "<i class=\"fa fa-pencil-square-o edit-delete-icon\"></i> </a> "
 					+ "            <a href=\"delete_dokumentistavke.html?id=" + dokument.getId() + "\" Onclick=\"return ConfirmDelete();\"> " + "<i class=\"fa fa-trash-o edit-delete-icon\"></i> </a>");
-			 
-//		        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy'");
-//		        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy' 'HH:mm:ss:S");
 
-//		        Date tt = dokument.getDatumVreme();
-//		        dokument.setVideo(simpleDateFormat.format(tt));
 
 		}
 
 		return aa; 
 	}		
 		
-	
+	@RequestMapping(path="/dokumentstavketest", method=RequestMethod.GET)
+	public List<DokumentStavke> getJsonDokumentiStavkeTest(){
+
+
+		
+		// netreba definisati findByIdDokument u querijima defoltno postoji
+		List<DokumentStavke> aa = dokumentStavkeRepository.findAll();
+
+		 for (Iterator iterator = aa.iterator(); iterator.hasNext();) {
+			 DokumentStavke dokument = (DokumentStavke) iterator.next();
+			 dokument.setAkcija("<a href=\"update_dokumentistavke.html?id=" + dokument.getId() + "\"> " + "<i class=\"fa fa-pencil-square-o edit-delete-icon\"></i> </a> "
+					+ "            <a href=\"delete_dokumentistavke.html?id=" + dokument.getId() + "\" Onclick=\"return ConfirmDelete();\"> " + "<i class=\"fa fa-trash-o edit-delete-icon\"></i> </a>");
+
+
+		}
+
+		return aa; 
+	}	
 	@RequestMapping(path="/typesofdocuments", method=RequestMethod.GET)
 	public List<TypesOfDocuments> getJsonTypesOfDocuments(){
 		

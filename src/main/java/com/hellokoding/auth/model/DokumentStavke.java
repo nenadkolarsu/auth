@@ -50,6 +50,8 @@ import com.fasterxml.jackson.annotation.JsonBackReference;
     , @NamedQuery(name = "DokumentStavke.findByUlaz", query = "SELECT p FROM DokumentStavke p WHERE p.ulaz = :ulaz")
     , @NamedQuery(name = "DokumentStavke.findByIzlaz", query = "SELECT p FROM DokumentStavke p WHERE p.izlaz = :izlaz")
     , @NamedQuery(name = "DokumentStavke.findByNapomena", query = "SELECT p FROM DokumentStavke p WHERE p.napomena = :napomena")
+//    , @NamedQuery(name = "DokumentStavke.findByIdDokument", query = "SELECT p FROM DokumentStavke p WHERE p.idDokument = :idDokument")
+
     , @NamedQuery(name = "DokumentStavke.findByDokumentStavkecol", query = "SELECT p FROM DokumentStavke p WHERE p.dokumentStavkecol = :dokumentStavkecol")})
 
 public class DokumentStavke implements Serializable {

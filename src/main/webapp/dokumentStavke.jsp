@@ -6,7 +6,7 @@
 <!-- <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%> -->
 <!-- <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %> -->
 
-<html ng-app="myApp"> 
+<html ng-app="myDokumentStavke"> 
 <!--  ng-app lang="en" -->
 <head>
 <!--  first part -->
@@ -17,7 +17,7 @@
 <meta http-equiv="Cache-Control" content="no-cache">
 <meta http-equiv="Expires" content="Sat, 01 Dec 2001 00:00:00 GMT">
 
-<title>Dokumenti</title>
+<title>Stavke dokumenta</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="static/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -84,31 +84,9 @@
 								</div>
 							</div>
 
-
-
-<!-- <div class="navbar navbar-default" id="navbar"> -->
-<!--     <div class="container" id="navbar-container"> -->
-<!--     <div class="navbar-header"> -->
-<!--         <a href="http://angularcode.com" class="navbar-brand"> -->
-<!--             <small> -->
-<!--                 <i class="glyphicon glyphicon-log-out"></i> -->
-<!--                 AngularCode / AngularJS Demos  -->
-<!--             </small> -->
-<!--         </a>/.brand -->
-        
-<!--     </div>/.navbar-header -->
-<!--     <div class="navbar-header pull-right" role="navigation"> -->
-<!--         <a href="http://angularcode.com/angularjs-datagrid-paging-sorting-filter-using-php-and-mysql/" class="btn btn-sm btn-danger nav-button-margin"> <i class="glyphicon glyphicon-book"></i>&nbsp;Tutorial Link</a> -->
-<!--         <a href="http://angularcode.com/download-link/?url=https://app.box.com/s/kyomkfyeb42irie6rxcl" class="btn btn-sm btn-warning nav-button-margin"> <i class="glyphicon glyphicon-download"></i>&nbsp;Download Project</a> -->
-<!--     </div> -->
-<!--     </div> -->
-<!-- </div> -->
-
 <div class='row'>
-<div class='col-lg-12' ng-controller="dokumentCrtl">
-<!-- <br/> -->
-<!-- <blockquote><h4><a href="http://angularcode.com/angularjs-datagrid-paging-sorting-filter-using-php-and-mysql/">Simple Datagrid with search, sort and paging using AngularJS + PHP + MySQL</a></h4></blockquote> -->
-<!-- <br/> -->
+<div class='col-lg-12' ng-controller="dokumentStavkeCrtl">
+
     <div class="row">
         <div class="col-md-2">PageSize:
             <select ng-model="entryLimit" class="form-control">
@@ -139,9 +117,7 @@
             <th style="width: 16%;">Datum&nbsp;<a ng-click="sort_by('remark');"><i class="glyphicon glyphicon-sort sort-arrows"></i></a></th>
             <th style="width: 10%;">Iznos&nbsp;<a ng-click="sort_by('akcija');"><i class="glyphicon glyphicon-sort sort-arrows"></i></a> </th>
             <th style="width: 12%;">AKCIJA&nbsp;<a ng-click="sort_by('akcija');"><i class="glyphicon glyphicon-sort sort-arrows"></i></a></th>
-<!--             <th>Country&nbsp;<a ng-click="sort_by('zvuk');"><i class="glyphicon glyphicon-sort"></i></a></th> -->
-<!--             <th>Credit Limit&nbsp;<a ng-click="sort_by('slika');"><i class="glyphicon glyphicon-sort"></i></a></th> -->
-            </thead>
+           </thead>
             <tbody>
                 <tr ng-repeat="data in filtered = (list | filter:search | orderBy : predicate :reverse) | startFrom:(currentPage-1)*entryLimit | limitTo:entryLimit">
                     <td>{{data.id}}</td>
@@ -153,7 +129,7 @@
                     <td>{{data.datum | date:"dd.MM.yyyy"}}</td>
                     <td>{{data.iznos | number:2}}</td>
 <!--                     <td>{{data.aktivan}}</td> -->
-                    <td> <a href="dokumentStavke.html?id={{data.id}}">aaa</a>   <a href="update_dokument.html?id={{data.id}}"><i class="fa fa-pencil-square-o edit-delete-icon"></i></a> <a href="delete_dokument.html?id={{data.id}}" onClick="return ConfirmDelete();"><i class="fa fa-trash-o edit-delete-icon"></i></a></td>
+                    <td>  <a href="view_dokument_items.html?id={{data.id}}"><i class="fa fa-file-text-o"></i></a>   <a href="update_dokument.html?id={{data.id}}"><i class="fa fa-pencil-square-o edit-delete-icon"></i></a> <a href="delete_dokument.html?id={{data.id}}" onClick="return ConfirmDelete();"><i class="fa fa-trash-o edit-delete-icon"></i></a></td>
 <!--                     <td>{{data.video}}</td> -->
 <!--                     <td>{{data.zvuk}}</td> -->
 <!--                     <td>{{data.slika}}</td> -->
@@ -163,7 +139,7 @@
         </div>
         <div class="col-md-12" ng-show="filteredItems == 0">
             <div class="col-md-12">
-                <h4>No document found</h4>             		
+                <h4>No document items found</h4>             		
             </div>
 
         </div>
@@ -189,7 +165,7 @@
 <%@ include file="scripts.jsp"%>
 <script src="https://code.angularjs.org/1.2.32/angular.js"></script>
 <script src="ui-bootstrap-tpls-0.10.0.min.js"></script>
-<script src="dokument.js"></script>
+<script src="dokumentItems.js"></script>
 
 
 <script>
