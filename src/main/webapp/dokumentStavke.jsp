@@ -6,7 +6,9 @@
 <!-- <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%> -->
 <!-- <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %> -->
 
-<html ng-app="myDokumentStavke"> 
+<!-- <html ng-app="myDokumentStavke">  -->
+
+<html ng-app="myApp">
 <!--  ng-app lang="en" -->
 <head>
 <!--  first part -->
@@ -85,8 +87,8 @@
 							</div>
 
 <div class='row'>
-<div class='col-lg-12' ng-controller="dokumentStavkeCrtl">
-
+<div class='col-lg-12' ng-controller="dokumentStavkeCrtl">  
+<!-- dokumentStavkeCrtl -->
     <div class="row">
         <div class="col-md-2">PageSize:
             <select ng-model="entryLimit" class="form-control">
@@ -106,33 +108,31 @@
     </div>
     <br/>
     <div class="row">
+    <div > asdfdf {{kata}}</div>
         <div class="col-md-12" ng-show="filteredItems > 0">
             <table class="display table table-striped table-bordered table-hover border-radius-0">
             <thead>
             <th style="width: 7%;">ID&nbsp;<a ng-click="sort_by('id');"><i class="glyphicon glyphicon-sort sort-arrows"></i></a></th>
-            <th style="width: 15%;">VD&nbsp;<a ng-click="sort_by('code');"><i class="glyphicon glyphicon-sort sort-arrows"></i></a></th>
-            <th style="width: 15%;">Broj dokumenta&nbsp;<a ng-click="sort_by('name');"><i class="glyphicon glyphicon-sort sort-arrows"></i></a></th>
-            <th style="width: 10%;">Magacin&nbsp;<a ng-click="sort_by('code');"><i class="glyphicon glyphicon-sort sort-arrows"></i></a></th>
-            <th style="width: 10%;">Partner&nbsp;<a ng-click="sort_by('code');"><i class="glyphicon glyphicon-sort sort-arrows"></i></a></th>
-            <th style="width: 16%;">Datum&nbsp;<a ng-click="sort_by('remark');"><i class="glyphicon glyphicon-sort sort-arrows"></i></a></th>
+            <th style="width: 15%;">Artikal&nbsp;<a ng-click="sort_by('code');"><i class="glyphicon glyphicon-sort sort-arrows"></i></a></th>
+            <th style="width: 15%;">Naziv&nbsp;<a ng-click="sort_by('name');"><i class="glyphicon glyphicon-sort sort-arrows"></i></a></th>
+            <th style="width: 10%;">Jm&nbsp;<a ng-click="sort_by('code');"><i class="glyphicon glyphicon-sort sort-arrows"></i></a></th>
+            <th style="width: 10%;">Kolicina&nbsp;<a ng-click="sort_by('code');"><i class="glyphicon glyphicon-sort sort-arrows"></i></a></th>
+            <th style="width: 16%;">Cena&nbsp;<a ng-click="sort_by('remark');"><i class="glyphicon glyphicon-sort sort-arrows"></i></a></th>
             <th style="width: 10%;">Iznos&nbsp;<a ng-click="sort_by('akcija');"><i class="glyphicon glyphicon-sort sort-arrows"></i></a> </th>
             <th style="width: 12%;">AKCIJA&nbsp;<a ng-click="sort_by('akcija');"><i class="glyphicon glyphicon-sort sort-arrows"></i></a></th>
            </thead>
             <tbody>
                 <tr ng-repeat="data in filtered = (list | filter:search | orderBy : predicate :reverse) | startFrom:(currentPage-1)*entryLimit | limitTo:entryLimit">
                     <td>{{data.id}}</td>
-                    <td>{{data.typesOfDocuments.name}}</td>
-                    <td>{{data.brojDokumenta}}</td>
-                    
-                    <td>{{data.magacini.name}}</td>
-                    <td>{{data.partner.name}}</td>
-                    <td>{{data.datum | date:"dd.MM.yyyy"}}</td>
+                    <td>{{data.artikli.id}}</td>
+                    <td>{{data.artikli.name}}</td>
+                    <td>{{data.artikli.jediniceMera.name}}</td>
+                    <td>{{data.kolicina | number:2}}</td>
+                    <td>{{data.cena | number:2}}</td>
                     <td>{{data.iznos | number:2}}</td>
+<!--                     <td>{{data.iznos | number:2}}</td> -->
 <!--                     <td>{{data.aktivan}}</td> -->
                     <td>  <a href="view_dokument_items.html?id={{data.id}}"><i class="fa fa-file-text-o"></i></a>   <a href="update_dokument.html?id={{data.id}}"><i class="fa fa-pencil-square-o edit-delete-icon"></i></a> <a href="delete_dokument.html?id={{data.id}}" onClick="return ConfirmDelete();"><i class="fa fa-trash-o edit-delete-icon"></i></a></td>
-<!--                     <td>{{data.video}}</td> -->
-<!--                     <td>{{data.zvuk}}</td> -->
-<!--                     <td>{{data.slika}}</td> -->
                 </tr>
             </tbody>
             </table>
@@ -165,7 +165,7 @@
 <%@ include file="scripts.jsp"%>
 <script src="https://code.angularjs.org/1.2.32/angular.js"></script>
 <script src="ui-bootstrap-tpls-0.10.0.min.js"></script>
-<script src="dokumentItems.js"></script>
+<script src="dokument.js"></script>
 
 
 <script>

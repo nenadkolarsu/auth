@@ -210,5 +210,35 @@ public class DokumentStavkeController {
         params.put("city",  companyDetails.companyDetails3);
         return new ModelAndView(view, params);
     }
+    
+    @RequestMapping(value = "/view_dokumentStavke.html") 
+	public String viewDokumentStavke(@RequestParam Long id, HttpServletRequest request){
+		request.setAttribute("dokumentStavke", dokumentStavkeRepository.findOne(id));
+		request.setAttribute("mode", "MODE_UPDATE");
+		request.setAttribute("title", "Update dokumentStavke");	
+		
+		Magacini km = new Magacini();
+	      List<Magacini> deptList = magaciniRepository.findAll(); 
+	      
+	    Map<Long, String> dept = new HashMap<>();
+		HttpSession sess = request.getSession();
+		
+		for (Magacini d : deptList) {
+	          dept.put(d.getId(), d.getName());
+	      }
+	      sess.setAttribute("eMagacini", dept);	 
+	      
+	      List<TypesOfDocuments> tdList = typesOfDocumentsRepository.findAll(); 	      
+		    Map<Long, String> tdl = new HashMap<>();
+			
+		for (TypesOfDocuments d : tdList) {
+		          tdl.put(d.getId(), d.getName());
+		      }
+	      sess.setAttribute("eTypesOfDocuments", tdl);	 
+	      
+	      
+		return "dokumentStavkeForm";
+	}
+        
 	
 }

@@ -41,7 +41,7 @@
 				<li>
 
 				
-					<a href='#'><i class="fa fa-inr" aria-hidden="true"></i> Dokumenti<span class="fa arrow"></span></a>
+					<a href='#'><i class="fa fa-th-large" aria-hidden="true"></i> Dokumenti<span class="fa arrow"></span></a>
 					<ul class="nav nav-second-level">
 						<li><a href='/dokument.html'>Dokument</a></li>
 						<li><a href='/typesOfDocuments.html'>Types of documents</a></li>
@@ -67,10 +67,10 @@
 					</ul>
 				</li>
 
-				<li>
-					<i class="fa fa-spinner fa-pulse fa-3x fa-fw"></i>
-					<span class="sr-only">Loading...</span>
-				</li>
+<!-- 				<li> -->
+<!-- 					<i class="fa fa-spinner fa-pulse fa-3x fa-fw"></i> -->
+<!-- 					<span class="sr-only">Loading...</span> -->
+<!-- 				</li> -->
 			
 			</ul>
 		</div>

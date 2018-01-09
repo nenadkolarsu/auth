@@ -17,6 +17,7 @@ app.controller('dokumentStavkeCrtl', function ($scope, $http, $timeout) {
         $scope.entryLimit = 5; //max no of items to display in a page
         $scope.filteredItems = $scope.list.length; //Initially for no filter  
         $scope.totalItems = $scope.list.length;
+        $scope.kata = "verrr";
     });
     $scope.setPage = function(pageNo) {
         $scope.currentPage = pageNo;

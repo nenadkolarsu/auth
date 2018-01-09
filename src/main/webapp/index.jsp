@@ -9,7 +9,7 @@
 			<%-- 	<%@ include file="index.jsp" %> --%>
 			<div class='row'>
 				<div class="col-lg-12">
-					<h3 class="page-header">Evidencija proizvoda i robe</h3>
+					<h4 class="page-header">Evidencija proizvoda i robe (Records of goods and packaging) </h4>
 				</div>
 				<div class='col-lg-12 '>
 					<div class='row spacer-bottom'>
