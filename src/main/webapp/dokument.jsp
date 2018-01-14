@@ -109,6 +109,7 @@
 <!-- <br/> -->
 <!-- <blockquote><h4><a href="http://angularcode.com/angularjs-datagrid-paging-sorting-filter-using-php-and-mysql/">Simple Datagrid with search, sort and paging using AngularJS + PHP + MySQL</a></h4></blockquote> -->
 <!-- <br/> -->
+
     <div class="row">
         <div class="col-md-2">PageSize:
             <select ng-model="entryLimit" class="form-control">
@@ -144,7 +145,7 @@
             </thead>
             <tbody>
                 <tr ng-repeat="data in filtered = (list | filter:search | orderBy : predicate :reverse) | startFrom:(currentPage-1)*entryLimit | limitTo:entryLimit">
-                    <td>{{data.id}}</td>
+                    <td ng-init="init({{data.id}}">{{data.id}} </td>
                     <td>{{data.typesOfDocuments.name}}</td>
                     <td>{{data.brojDokumenta}}</td>
                     
@@ -153,10 +154,11 @@
                     <td>{{data.datum | date:"dd.MM.yyyy"}}</td>
                     <td>{{data.iznos | number:2}}</td>
 <!--                     <td>{{data.aktivan}}</td> -->
-                    <td> <a href="dokumentStavke.html?id={{data.id}}"><i class="fa fa-clone edit-delete-icon"></i></a>   <a href="update_dokument.html?id={{data.id}}"><i class="fa fa-pencil-square-o edit-delete-icon"></i></a> <a href="delete_dokument.html?id={{data.id}}" onClick="return ConfirmDelete();"><i class="fa fa-trash-o edit-delete-icon"></i></a></td>
+                    <td> <a href="view_dokumentStavke.html?id={{data.id}}"><i class="fa fa-clone edit-delete-icon"></i></a>   <a href="update_dokument.html?id={{data.id}}"><i class="fa fa-pencil-square-o edit-delete-icon"></i></a> <a href="delete_dokument.html?id={{data.id}}" onClick="return ConfirmDelete();"><i class="fa fa-trash-o edit-delete-icon"></i></a></td>
 <!--                     <td>{{data.video}}</td> -->
 <!--                     <td>{{data.zvuk}}</td> -->
 <!--                     <td>{{data.slika}}</td> -->
+<!-- ng-init="init({{data.id}})" -->
                 </tr>
             </tbody>
             </table>

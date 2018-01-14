@@ -289,8 +289,8 @@ public class RestsController {
 		return aa; 
 	}		
 	
-	@RequestMapping(path="/dokumentstavke", method=RequestMethod.GET)
-	public List<DokumentStavke> getJsonDokumentiStavke(@RequestParam(value="itemid") Long id){
+	@RequestMapping(path="/dokumentstavketest1", method=RequestMethod.GET)
+	public List<DokumentStavke> getJsonDokumentiStavkeRest(@RequestParam(value="id") Long id){
 
 		Dokument aa1 = dokumentRepository.findOne(id);
 		

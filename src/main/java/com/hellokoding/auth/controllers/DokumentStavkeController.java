@@ -2,6 +2,7 @@ package com.hellokoding.auth.controllers;
 
 import java.util.Date;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
@@ -26,17 +27,20 @@ import com.hellokoding.auth.model.Drzave;
 import com.hellokoding.auth.model.Magacini;
 import com.hellokoding.auth.model.Partner;
 import com.hellokoding.auth.model.Dokument;
+import com.hellokoding.auth.model.DokumentStavke;
 import com.hellokoding.auth.model.PttBrojevi;
 import com.hellokoding.auth.model.TypesOfDocuments;
 import com.hellokoding.auth.repository.CostumersRepository;
 import com.hellokoding.auth.repository.DokumentRepository;
+import com.hellokoding.auth.repository.DokumentStavkeRepository;
 import com.hellokoding.auth.repository.MagaciniRepository;
 import com.hellokoding.auth.repository.TypesOfDocumentsRepository;
 
 @Controller
 public class DokumentStavkeController {
+	
 	@Autowired
-	private DokumentRepository dokumentStavkeRepository;
+	private DokumentStavkeRepository dokumentStavkeRepository;
 
 	@Autowired
 	private MagaciniRepository magaciniRepository;
@@ -53,6 +57,8 @@ public class DokumentStavkeController {
 	@Autowired
 	private TypesOfDocumentsRepository typesOfDocumentsRepository;
 	
+	@Autowired
+	private DokumentRepository dokumentRepository;
 	
 	
 	@RequestMapping(value = "/dokumentStavke.html")
@@ -117,7 +123,7 @@ public class DokumentStavkeController {
 	}	
 
 	@RequestMapping(value = "/save_dokumentStavke.html", method = RequestMethod.POST)
-	public String addTypeMeasure(@ModelAttribute("dokumentStavke") @Valid Dokument dokumentStavke, 
+	public String addTypeMeasure(@ModelAttribute("dokumentStavke") @Valid DokumentStavke dokumentStavke, 
 			BindingResult result, Model model) { // , @PathVariable int aktivan
 
 //        if (aktivan == 1) {
@@ -211,9 +217,35 @@ public class DokumentStavkeController {
         return new ModelAndView(view, params);
     }
     
+    
+	@RequestMapping(path="/dokumentstavkestavke", method=RequestMethod.GET)
+	public List<DokumentStavke> getJsonDokumentiStavke(@RequestParam(value="itemid") Long id){
+
+		Dokument aa1 = dokumentRepository.findOne(id);
+		
+		// netreba definisati findByIdDokument u querijima defoltno postoji
+		List<DokumentStavke> aa = dokumentStavkeRepository.findByIdDokument(aa1);
+
+		 for (Iterator iterator = aa.iterator(); iterator.hasNext();) {
+			 DokumentStavke dokument = (DokumentStavke) iterator.next();
+			 dokument.setAkcija("<a href=\"update_dokumentistavke.html?id=" + dokument.getId() + "\"> " + "<i class=\"fa fa-pencil-square-o edit-delete-icon\"></i> </a> "
+					+ "            <a href=\"delete_dokumentistavke.html?id=" + dokument.getId() + "\" Onclick=\"return ConfirmDelete();\"> " + "<i class=\"fa fa-trash-o edit-delete-icon\"></i> </a>");
+
+
+		}
+
+		return aa; 
+	}		
+		    
     @RequestMapping(value = "/view_dokumentStavke.html") 
 	public String viewDokumentStavke(@RequestParam Long id, HttpServletRequest request){
-		request.setAttribute("dokumentStavke", dokumentStavkeRepository.findOne(id));
+    	
+		Dokument aa1 = dokumentRepository.findOne(id);  
+		
+		// netreba definisati findByIdDokument u querijima defoltno postoji
+		List<DokumentStavke> aa = dokumentStavkeRepository.findByIdDokument(aa1);
+		
+		request.setAttribute("data", aa); // dokumentStavke
 		request.setAttribute("mode", "MODE_UPDATE");
 		request.setAttribute("title", "Update dokumentStavke");	
 		
@@ -237,7 +269,7 @@ public class DokumentStavkeController {
 	      sess.setAttribute("eTypesOfDocuments", tdl);	 
 	      
 	      
-		return "dokumentStavkeForm";
+		return "dokumentStavke";
 	}
         
 	

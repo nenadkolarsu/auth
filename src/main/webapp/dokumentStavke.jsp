@@ -52,7 +52,7 @@
 </head>
 <body>
 
-	<div id="wrapper">
+	<div id="wrapper" ng-controller="dokumentStavkeCrtl">
 
 
 		<%@ include file="../horizontal-navigation.html"%> 
@@ -87,7 +87,11 @@
 							</div>
 
 <div class='row'>
-<div class='col-lg-12' ng-controller="dokumentStavkeCrtl">  
+<div class='col-lg-12' >  
+<!-- <div class='col-lg-12' ng-controller="dokumentController" >   -->
+<!--  <h1>I am  {{id}}</h1> -->
+<%--   <h1>I am  ${title}</h1> --%>
+<%--   <h1>I am  ${data}</h1> --%>
 <!-- dokumentStavkeCrtl -->
     <div class="row">
         <div class="col-md-2">PageSize:
