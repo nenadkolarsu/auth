@@ -6,7 +6,6 @@
 <!-- <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%> -->
 <!-- <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %> -->
 
-<!-- <html ng-app="myDokumentStavke">  -->
 
 <html ng-app="myApp">
 <!--  ng-app lang="en" -->
@@ -54,6 +53,7 @@
 
 	<div id="wrapper" ng-controller="dokumentStavkeCrtl">
 
+<!-- 	<div id="wrapper" ng-controller="ctrl"> -->
 
 		<%@ include file="../horizontal-navigation.html"%> 
   		<%@ include file="../vertical-menu.jsp"%> 
@@ -136,7 +136,7 @@
                     <td>{{data.iznos | number:2}}</td>
 <!--                     <td>{{data.iznos | number:2}}</td> -->
 <!--                     <td>{{data.aktivan}}</td> -->
-                    <td>  <a href="view_dokument_items.html?id={{data.id}}"><i class="fa fa-file-text-o"></i></a>   <a href="update_dokument.html?id={{data.id}}"><i class="fa fa-pencil-square-o edit-delete-icon"></i></a> <a href="delete_dokument.html?id={{data.id}}" onClick="return ConfirmDelete();"><i class="fa fa-trash-o edit-delete-icon"></i></a></td>
+                    <td>  <a href="view_dokument_items.html?id={{data.id}}"><i class="fa fa-file-text-o edit-delete-icon"></i></a>   <a href="update_dokument.html?id={{data.id}}"><i class="fa fa-pencil-square-o edit-delete-icon"></i></a> <a href="delete_dokument.html?id={{data.id}}" onClick="return ConfirmDelete();"><i class="fa fa-trash-o edit-delete-icon"></i></a></td>
                 </tr>
             </tbody>
             </table>
@@ -170,7 +170,7 @@
 <script src="https://code.angularjs.org/1.2.32/angular.js"></script>
 <script src="ui-bootstrap-tpls-0.10.0.min.js"></script>
 <script src="dokument.js"></script>
-
+<script src="dokumentItems.js"></script>
 
 <script>
 		function ConfirmDelete() {

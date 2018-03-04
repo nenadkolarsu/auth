@@ -31,15 +31,20 @@ app.controller('dokumentCrtl', function ($scope, $http, $timeout) {
     };
 });
 
-app.controller('dokumentStavkeCrtl1', function ($scope, $http, $timeout, $routeParams) {
+app.controller('dokumentStavkeCrtl1', function ($scope, $http, $timeout, $routeParams, $location) {
 
 //	 $http({ url: "http://localhost:8080/dokumentstavketest1", 
-		$http({ url: "http://localhost:8080/view_dokumentStavke.html", 
+
+        $scope.param1 = $routeParams.param1;
+        $scope.param2 = $routeParams.param2;
+    
+	    $http({ url: "http://localhost:8080/view_dokumentStavke.html", 
 		method: "get", params: { id: $routeParams.id } })
 		
-//			  $http({
+//		    $http({
 //          method: 'GET',
 //          url: 'http://localhost:8080/view_dokumentStavke.html?id=' + $routeParams.id})
+		
 		.then(function (data) 
 				{ $scope.data = data; 
 				$scope.kata = "bata";
@@ -63,14 +68,16 @@ app.controller('dokumentStavkeCrtl1', function ($scope, $http, $timeout, $routeP
        $scope.reverse = !$scope.reverse;
    };
 });
-app.controller("dokumentController", function ($scope, $http, $routeParams) 
 
-		{ $http({ url: "view_dokumentStavke.html", 
-			method: "get", params: { id: $routeParams.id } }).then(function (response) 
-					{ $scope.data = response.data; 
-					});
-					});
-					
+//app.controller("dokumentController", function ($scope, $http, $routeParams) 
+//
+//		{ $http({ url: "view_dokumentStavke.html", 
+//			method: "get", params: { id: $routeParams.id } }).then(function (response) 
+//					{ $scope.data = response.data; 
+//					});
+//					});
+//					
+
 app.controller('dokumentStavkeCrtl', function ($scope, $http, $timeout) {
 	
 

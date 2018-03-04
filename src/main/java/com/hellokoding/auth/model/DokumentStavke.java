@@ -310,7 +310,7 @@ public class DokumentStavke implements Serializable {
     public void setDokumentStavkecol(String dokumentStavkecol) {
         this.dokumentStavkecol = dokumentStavkecol;
     }
-
+    
     public Dokument getIdDokument() {
         return idDokument;
     }

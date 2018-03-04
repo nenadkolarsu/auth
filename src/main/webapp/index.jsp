@@ -24,7 +24,7 @@
 						<div class='col-lg-3 col-lg-offset-1 thumbnail-border'>
 							<div class='row border-bottom thumbnail-header'>
 								<div class='col-lg-12'>
-									<h4>Prijemnice</h4>
+<!-- 									<h4>Prijemnice</h4> -->
 								</div>
 							</div>
 							<div class='row'>
@@ -36,7 +36,7 @@
 						<div class='col-lg-3 col-lg-offset-1 thumbnail-border margin-thumbnail-align'>
 							<div class='row border-bottom thumbnail-header'>
 								<div class='col-lg-12'>
-									<h4>Otpremnice</h4>
+<!-- 									<h4>Otpremnice</h4> -->
 								</div>
 							</div>
 							<div class='row'>
@@ -48,7 +48,7 @@
 						<div class='col-lg-3 thumbnail-border'>
 							<div class='row border-bottom thumbnail-header'>
 								<div class='col-lg-12'>
-									<h4>Pregled magacina</h4>
+<!-- 									<h4>Pregled magacina</h4> -->
 								</div>
 							</div>
 							<div class='row'>
