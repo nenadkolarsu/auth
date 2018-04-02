@@ -219,6 +219,7 @@ public class DokumentStavke implements Serializable {
         return akcija;
     }
 
+    
     public void setAkcija(String akcija) {
         this.akcija = akcija;
     }

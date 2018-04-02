@@ -39,7 +39,8 @@ public class VrsteArtikala implements Serializable {
     
  //   @OneToMany(mappedBy = "vrsteArtikala", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @Fetch (FetchMode.SELECT)
-    @OneToMany(mappedBy = "vrsteArtikala", orphanRemoval = true, cascade = CascadeType.PERSIST)
+    @OneToMany(mappedBy = "vrsteArtikala", orphanRemoval = true, 
+    cascade = CascadeType.PERSIST)
     
     @JsonManagedReference
     private Set<Artikli> artikli;
