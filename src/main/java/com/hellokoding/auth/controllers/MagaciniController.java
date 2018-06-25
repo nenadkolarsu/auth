@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.persistence.EntityNotFoundException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 //import javax.servlet.http.HttpServletRequest;
@@ -27,7 +28,11 @@ import com.hellokoding.auth.dao.MagaciniDao;
 import com.hellokoding.auth.dao.VrsteMagacinaDao;
 //import com.hellokoding.auth.model.User;
 import com.hellokoding.auth.model.Magacini;
+import com.hellokoding.auth.model.Partner;
+import com.hellokoding.auth.model.PttBrojevi;
 import com.hellokoding.auth.model.VrsteMagacina;
+import com.hellokoding.auth.repository.CostumersRepository;
+import com.hellokoding.auth.repository.PttBrojeviRepository;
 import com.hellokoding.auth.service.SecurityService;
 import com.hellokoding.auth.service.UserService;
 import com.hellokoding.auth.service.MagaciniService;
@@ -51,6 +56,11 @@ public class MagaciniController {
 	@Autowired
 	private VrsteMagacinaDao vrstemagacinaDao;
 
+	@Autowired
+	private CostumersRepository customersrepository;	
+
+	@Autowired
+	private PttBrojeviRepository pttbrojevirepository;
 	
 	@RequestMapping(value = "/magacini.html", method = RequestMethod.GET)
 	public String helloForm(Model model) {
@@ -76,7 +86,16 @@ public class MagaciniController {
 			return "magaciniUnosForm";
 		}
 
-		magaciniService.save(magacini);
+//		if(id==1){
+//			throw new EntityNotFoundException(id);
+//			
+			try {
+				magaciniService.save(magacini);
+			}
+			catch (Exception e) {
+				return "414";
+			}
+			
 		// return "redirect:vrste-paleta.html"; 
 		return "list-magacini"; 
 	}
@@ -96,7 +115,8 @@ public class MagaciniController {
 		HttpSession sess = request.getSession();
 //      System.out.println("Shashi");
       Map<Long, String> dept = new HashMap<>();
-  
+      Map<Long, String> deptpt = new HashMap<>();
+      Map<Long, String> deptptt = new HashMap<>();
       
       VrsteMagacina km = new VrsteMagacina();
       List<VrsteMagacina> deptList = vrstemagacinaDao.findAll(); 
@@ -104,6 +124,20 @@ public class MagaciniController {
           dept.put(d.getId(), d.getName());
       }
       sess.setAttribute("eDept", dept);
+
+      Partner pt = new Partner();
+      List<Partner> ptList = customersrepository.findAll(); 
+      for (Partner d : ptList) {
+          deptpt.put(d.getId(), d.getName());
+      }
+      sess.setAttribute("eDeptPt", deptpt);      
+
+      PttBrojevi ptt = new PttBrojevi();
+      List<PttBrojevi> pttList = pttbrojevirepository.findAll(); 
+      for (PttBrojevi d : pttList) {
+          deptptt.put(d.getId(), d.getName());
+      }
+      sess.setAttribute("eDeptPtt", deptptt);      
       
 		return new ModelAndView("magaciniUnosForm", "magacini", aa);
 		// return new ModelAndView("vrstePaletaUnosForm", "vrstePaleta", new VrstePaleta());
@@ -114,6 +148,33 @@ public class MagaciniController {
 	public String updateTask(@RequestParam Long id, HttpServletRequest request){
 		request.setAttribute("magacini", magaciniService.findByOne(id));
 		request.setAttribute("mode", "MODE_UPDATE");
+		
+	      Map<Long, String> dept = new HashMap<>();
+	      Map<Long, String> deptpt = new HashMap<>();
+	      Map<Long, String> deptptt = new HashMap<>();	      
+	  	  HttpSession sess = request.getSession();
+	  	  
+	      VrsteMagacina km = new VrsteMagacina();
+	      List<VrsteMagacina> deptList = vrstemagacinaDao.findAll(); 
+	      for (VrsteMagacina d : deptList) {
+	          dept.put(d.getId(), d.getName());
+	      }
+	      sess.setAttribute("eDept", dept);
+
+	      Partner pt = new Partner();
+	      List<Partner> ptList = customersrepository.findAll(); 
+	      for (Partner d : ptList) {
+	          deptpt.put(d.getId(), d.getName());
+	      }
+	      sess.setAttribute("eDeptPt", deptpt);  
+	      
+	      PttBrojevi ptt = new PttBrojevi();
+	      List<PttBrojevi> pttList = pttbrojevirepository.findAll(); 
+	      for (PttBrojevi d : pttList) {
+	          deptptt.put(d.getId(), d.getName());
+	      }
+	      sess.setAttribute("eDeptPtt", deptptt);    
+	      
 		return "magaciniUnosForm";
 	}
     

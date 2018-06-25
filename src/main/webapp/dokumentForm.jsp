@@ -12,7 +12,7 @@
 		<div id="page-wrapper">
 
 			<div class="row">
-				<div class="col-lg-12">
+				<div class="col-lg-6">
 					<h6 class="page-header"></h6> 
 				</div>
 			</div>
@@ -22,11 +22,12 @@
 					<div class='panel panel-default'>
 						<div class='panel-heading'>${title}</div>
 						<div class='panel-body'>
+						
 							<div class='row'>
 								<div class='col-lg-6'>
 
 									<form:form method="POST" action="save_dokument.html"
-										modelAttribute="dokument">
+										modelAttribute="dokument" >
 
 										<input type="hidden" name="${_csrf.parameterName}"
 											value="${_csrf.token}" />
@@ -46,17 +47,7 @@
 <!-- 											</p> -->
 <!-- 										</div> -->
 
-										<div class='form-group ${error != null ? 'has-error' : ''}'>
-											<label class='font-awesome'>Broj dokumenta</label>
-											<%-- 									<input class="form-control" name='name' path='name' placeholder='Unesite naziv' value="${task.name}"> --%>
 
-											<form:input type="text" class="form-control" id="brojDokumenta"
-												path="brojDokumenta" placeholder='brojDokumenta'
-												value="${dokument.brojDokumenta}" />
-											<p class="help-block">
-												<form:errors path="brojDokumenta" class="help-block" />
-											</p>
-										</div>
 										
 <%-- 										<div class="form-group"${error != null ? 'has-error' : ''}'> --%>
 <!-- 											<label class='font-awesome'>Vrsta dokumenta</label> -->
@@ -73,15 +64,39 @@
 										<div class="form-group"${error != null ? 'has-error' : ''}'>
 											<label class='font-awesome'>Vrsta dokumenta</label>
 
-											<form:select path="TypesOfDocuments" class="form-control">
+											<form:select path="TypesOfDocuments.id" class="form-control">
 												<form:options items="${eTypesOfDocuments}" />
 											</form:select>
 
 											<p class="help-block">
-												<form:errors path="TypesOfDocuments" class="help-block" />
+												<form:errors path="TypesOfDocuments.id" class="help-block" />
 											</p>
 										</div>		
 										
+										<div class='form-group ${error != null ? 'has-error' : ''}'>
+											<label class='font-awesome'>Broj dokumenta</label>
+											<%-- <input class="form-control" name='name' path='name' placeholder='Unesite naziv' value="${task.name}"> --%>
+
+											<form:input type="text" class="form-control" id="brojDokumenta"
+												path="brojDokumenta" placeholder='brojDokumenta'
+												value="${dokument.brojDokumenta}" />
+											<p class="help-block">
+												<form:errors path="brojDokumenta" class="help-block" />
+											</p>
+										</div>										
+										
+										<div class='form-group ${error != null ? 'has-error' : ''}'>
+											<label class='font-awesome'>interniBrojDokumenta</label>
+											<%-- 									<input class="form-control" name='name' path='name' placeholder='Unesite naziv' value="${task.name}"> --%>
+
+											<form:input type="text" class="form-control" id="interniBrojDokumenta"
+												path="interniBrojDokumenta" placeholder='interniBrojDokumenta'
+												value="${dokument.interniBrojDokumenta}" readonly="true" />
+											<p class="help-block">
+												<form:errors path="interniBrojDokumenta" class="help-block" />
+											</p>
+										</div>			
+																				
 										<div class='form-group ${error != null ? 'has-error' : ''}'>
 											<label class='font-awesome'>Datum</label>
 
@@ -95,36 +110,74 @@
 										</div>
 																			
 										
-									<div class="form-group"${error != null ? 'has-error' : ''}'> 
-											<label class='font-awesome'>Magacin</label> 
-
-											<form:select path="Magacini" class="form-control"> 
-												<form:options items="${eMagacini}" /> 
-											</form:select> 
-
-											<p class="help-block"> 
-												<form:errors path="Magacini" class="help-block" /> 
-											</p> 
-
-										</div>		
+	
 						
-										<div class="form-group"${error != null ? 'has-error' : ''}'>
+										<div class="form-group" ${error != null ? 'has-error' : ''}>
 											<label class='font-awesome'>Partner</label>
 
-											<form:select path="Partner" class="form-control">
-												<form:options items="${ePartner}" />
-											</form:select>
+<%-- 											<form:select path="Partner.id" class="form-control"> --%>
+<%-- 												<form:option value="0" label="--- Select One ---"></form:option> --%>
+<%-- 												<form:options  cssClass="${role.getKey()}" items="${ePartner}" /> --%>
+<%-- 											</form:select> --%>
 
+
+											<select id="selectManuf" class="form-control" name="Partner.id" >
+    											<c:forEach var="role" items="${ePartner}">
+      											<option class="${role.getKey()}" value="${role.getKey()}" ${role.getKey() == dokument.partner.id ? 'selected' : ''}> ${role.getValue()}</option>
+    											</c:forEach>
+											</select>
+											
 											<p class="help-block">
-												<form:errors path="Partner" class="help-block" />
+												<form:errors path="Partner.id" class="help-block" />
 											</p>
 										</div>	
 										
+									<div class="form-group"${error != null ? 'has-error' : ''}'> 
+											<label class='font-awesome'>Magacin</label> 
+
+<%-- 											<form:select path="Magacini.id" class="form-control">  --%>
+<%-- 												<form:options items="${eMagacini}" />  --%>
+<%-- 											</form:select>  --%>
+
+<!-- 											<select id="selectModel" class="form-control" name="Magacini.id" > -->
+<%--     											<c:forEach var="role" items="${eMagacini}">    											 --%>
+<%--       											<option class="${role.getKey()}" value="${role.getKey()}" ${role.getKey() == dokument.magacini.id ? 'selected' : ''}> ${role.getValue()}</option> --%>
+<%--     											</c:forEach> --%>
+<!-- 											</select> -->
+
+
+											<select id="selectModel" class="form-control" name="Magacini.id" >
+    											<c:forEach var="role" items="${eMagacini}">  
+    																						
+      											<option class="${role.partner.getId()}" value="${role.getId()}" ${role.getId() == dokument.magacini.id ? 'selected' : ''}> ${role.getName()}</option>
+      											<c:out value="${role.partner.getId()}"/>
+<%--       											<option class="${role.partner.getId()}" value="${role.getId()}" ${role.getId() == dokument.magacini.id ? 'selected' : ''}> ${role.getName()}</option> --%>
+
+    											</c:forEach>
+											</select>
+
+
+											<p class="help-block"> 
+												<form:errors path="Magacini.id" class="help-block" /> 
+											</p> 
+
+										</div>											
+										
+										</div>
+										
+										<c:out value="${dokument.partner.id}"/>
+										<c:out value="${dokument.partner.name}"/>
+										<c:out value="${ePartner['key']}"/>
+
+	<c:forEach var="hash" items="${ePartner['key']}">
+        <option></option>
+  </c:forEach>
+										<div class='col-lg-6'>
 										<div class='form-group'>
 											<label class='font-roboto'>Napomena</label>
 											<%-- 									<textarea class="form-control" name='napomena' path='napomena'  placeholder='Unesite napomenu' value="${task.napomena}"></textarea> --%>
 											<form:textarea type="text" class="form-control" id="napomena"
-												path="napomena" value="${dokument.napomena}" />
+												path="napomena" value="${dokument.napomena}" rows="4"/>
 											<p class="help-block">
 												<form:errors path="napomena" class="help-block" />
 											</p>
@@ -177,17 +230,30 @@
 											</label>
 										</div>
 
-										<button type="submit" class="btn-lg button-novi">
+
+								</div> 
+								
+								
+							</div> <!--  end row  -->
+							
+							<div class="row margin-top-10">
+							<div class="col-lg-12 text-center">
+																	<button type="submit" class="btn-lg button-novi">
 											<i class='fa fa-floppy-o'></i> Save
 										</button>
-										<button type="reset" class="btn-lg button-novi">
-											<i class='fa fa-reply'></i> Cancel
-										</button>
+										<input type="button" onclick="location.href='dokument.html';" value="Cancel"  class="btn-lg button-novi"/>
+<!-- 										<button type="reset" class="btn-lg button-novi"> -->
+<!-- 											<i class='fa fa-reply'></i> Cancel -->
+<!-- 										</button> -->
+										
+<!-- 										<button type="reset" class="btn-lg button-novi"> -->
+<!-- 											<i class='fa fa-reply'></i> Cancel -->
+<!-- 										</button> -->
 
 									</form:form>
-								</div>
 							</div>
 						</div>
+						
 					</div>
 					<!-- end of panel -->
 				</div>
@@ -196,77 +262,62 @@
 
 
 
-<div ng-app="myDokumentStavke" class='row'>
-<div class='col-lg-12' ng-controller="dokumentStavkeCrtl">
-<!-- <br/> -->
-<!-- <blockquote><h4><a href="http://angularcode.com/angularjs-datagrid-paging-sorting-filter-using-php-and-mysql/">Simple Datagrid with search, sort and paging using AngularJS + PHP + MySQL</a></h4></blockquote> -->
-<!-- <br/> -->
-    <div class="row">
-        <div class="col-md-2">PageSize:
-            <select ng-model="entryLimit" class="form-control">
-                <option>5</option>
-                <option>10</option>
-                <option>20</option>
-                <option>50</option>
-                <option>100</option>
-            </select>
-        </div>
-        <div class="col-md-3">Filter:
-            <input type="text" ng-model="search" ng-change="filter()" placeholder="Filter" class="form-control" />
-        </div>
-        <div class="col-md-4">
-            <h5>Filtered {{ filtered.length }} of {{ totalItems}} total customers</h5>
-        </div>
-    </div>
-    <br/>
-    <div class="row">
-        <div class="col-md-12" ng-show="filteredItems > 0">
-            <table class="display table table-striped table-bordered table-hover border-radius-0">
-            <thead>
-            <th style="width: 7%;">ID&nbsp;<a ng-click="sort_by('id');"><i class="glyphicon glyphicon-sort sort-arrows"></i></a></th>
-<!--             <th style="width: 15%;">VD&nbsp;<a ng-click="sort_by('code');"><i class="glyphicon glyphicon-sort sort-arrows"></i></a></th> -->
-<!--             <th style="width: 15%;">Broj dokumenta&nbsp;<a ng-click="sort_by('name');"><i class="glyphicon glyphicon-sort sort-arrows"></i></a></th> -->
-<!--             <th style="width: 10%;">Magacin&nbsp;<a ng-click="sort_by('code');"><i class="glyphicon glyphicon-sort sort-arrows"></i></a></th> -->
-<!--             <th style="width: 10%;">Partner&nbsp;<a ng-click="sort_by('code');"><i class="glyphicon glyphicon-sort sort-arrows"></i></a></th> -->
-<!--             <th style="width: 16%;">Datum&nbsp;<a ng-click="sort_by('remark');"><i class="glyphicon glyphicon-sort sort-arrows"></i></a></th> -->
-            <th style="width: 10%;">Iznos&nbsp;<a ng-click="sort_by('akcija');"><i class="glyphicon glyphicon-sort sort-arrows"></i></a> </th>
-            <th style="width: 12%;">AKCIJA&nbsp;<a ng-click="sort_by('akcija');"><i class="glyphicon glyphicon-sort sort-arrows"></i></a></th>
-<!--             <th>Country&nbsp;<a ng-click="sort_by('zvuk');"><i class="glyphicon glyphicon-sort"></i></a></th> -->
-<!--             <th>Credit Limit&nbsp;<a ng-click="sort_by('slika');"><i class="glyphicon glyphicon-sort"></i></a></th> -->
-            </thead>
-            <tbody>
-                <tr ng-repeat="data in filtered = (list | filter:search | orderBy : predicate :reverse) | startFrom:(currentPage-1)*entryLimit | limitTo:entryLimit">
-                    <td>{{data.id}}</td>
-<!--                     <td>{{data.typesOfDocuments.name}}</td> -->
-<!--                     <td>{{data.brojDokumenta}}</td> -->
-                    
-<!--                     <td>{{data.magacini.name}}</td> -->
-<!--                     <td>{{data.partner.name}}</td> -->
-<!--                     <td>{{data.datum | date:"dd.MM.yyyy"}}</td> -->
-                    <td>{{data.iznos | number:2}}</td>
-<!--                     <td>{{data.aktivan}}</td> -->
-                    <td><a href="update_dokument.html?id={{data.id}}"><i class="fa fa-pencil-square-o edit-delete-icon"></i></a> <a href="delete_dokument.html?id={{data.id}}" onClick="return ConfirmDelete();"><i class="fa fa-trash-o edit-delete-icon"></i></a></td>
-<!--                     <td>{{data.video}}</td> -->
-<!--                     <td>{{data.zvuk}}</td> -->
-<!--                     <td>{{data.slika}}</td> -->
-                </tr>
-            </tbody>
-            </table>
-        </div>
-        <div class="col-md-12" ng-show="filteredItems == 0">
-            <div class="col-md-12">
-                <h4>No document items found</h4>             		
-            </div>
+<!-- <div ng-app="myDokumentStavke" class='row'> -->
+<!-- <div class='col-lg-12' ng-controller="dokumentStavkeCrtl"> -->
+<!-- <!-- <br/> --> 
+<!-- <blockquote><h4> <a href="http://angularcode.com/angularjs-datagrid-paging-sorting-filter-using-php-and-mysql/">Simple Datagrid with search, sort and paging using AngularJS + PHP + MySQL</a></h4></blockquote> --> 
+<!-- <!-- <br/> --> 
+<!--     <div class="row"> -->
+<!--         <div class="col-md-2">PageSize: -->
+<!--             <select ng-model="entryLimit" class="form-control"> -->
+<!--                 <option>5</option> -->
+<!--                 <option>10</option> -->
+<!--                 <option>20</option> -->
+<!--                 <option>50</option> -->
+<!--                 <option>100</option> -->
+<!--             </select> -->
+<!--         </div> -->
+<!--         <div class="col-md-3">Filter: -->
+<!--             <input type="text" ng-model="search" ng-change="filter()" placeholder="Filter" class="form-control" /> -->
+<!--         </div> -->
+<!--         <div class="col-md-4"> -->
+<!--             <h5>Filtered {{ filtered.length }} of {{ totalItems}} total customers</h5> -->
+<!--         </div> -->
+<!--     </div> -->
+<!--     <br/> -->
+<!--     <div class="row"> -->
+<!--         <div class="col-md-12" ng-show="filteredItems > 0"> -->
+<!--             <table class="display table table-striped table-bordered table-hover border-radius-0"> -->
+<!--             <thead> -->
+<!--             <th style="width: 7%;">ID&nbsp;<a ng-click="sort_by('id');"><i class="glyphicon glyphicon-sort sort-arrows"></i></a></th> -->
+<!--             <th style="width: 10%;">Iznos&nbsp;<a ng-click="sort_by('akcija');"><i class="glyphicon glyphicon-sort sort-arrows"></i></a> </th> -->
+<!--             <th style="width: 12%;">AKCIJA&nbsp;<a ng-click="sort_by('akcija');"><i class="glyphicon glyphicon-sort sort-arrows"></i></a></th> -->
+<!--             </thead> -->
+<!--             <tbody> -->
+<!--                 <tr ng-repeat="data in filtered = (list | filter:search | orderBy : predicate :reverse) | startFrom:(currentPage-1)*entryLimit | limitTo:entryLimit"> -->
+<!--                     <td>{{data.id}}</td> -->
+<!--                     <td>{{data.iznos | number:2}}</td> -->
 
-        </div>
-        <div class="col-md-12" ng-show="filteredItems > 0">    
-            <div pagination="" page="currentPage" on-select-page="setPage(page)" boundary-links="true" total-items="filteredItems" items-per-page="entryLimit" class="pagination-small" previous-text="&laquo;" next-text="&raquo;"></div>
+<!--                     <td><a href="update_dokument.html?id={{data.id}}"><i class="fa fa-pencil-square-o edit-delete-icon"></i></a> <a href="delete_dokument.html?id={{data.id}}" onClick="return ConfirmDelete();"><i class="fa fa-trash-o edit-delete-icon"></i></a></td> -->
+
+<!--                 </tr> -->
+<!--             </tbody> -->
+<!--             </table> -->
+<!--         </div> -->
+<!--         <div class="col-md-12" ng-show="filteredItems == 0"> -->
+<!--             <div class="col-md-12"> -->
+<!--                 <h4>No document items found</h4>             		 -->
+<!--             </div> -->
+
+<!--         </div> -->
+<!--         <div class="col-md-12" ng-show="filteredItems > 0">     -->
+<!--             <div pagination="" page="currentPage" on-select-page="setPage(page)" boundary-links="true" total-items="filteredItems" items-per-page="entryLimit" class="pagination-small" previous-text="&laquo;" next-text="&raquo;"></div> -->
             
             
-        </div>
-    </div>
-</div>
-</div> 
+<!--         </div> -->
+<!--     </div> -->
+<!-- </div> -->
+<!-- </div>  -->
 
 
 
@@ -279,5 +330,54 @@
 	<script src="https://code.angularjs.org/1.2.32/angular.js"></script>
     <script src="ui-bootstrap-tpls-0.10.0.min.js"></script>
 	<script src="dokumentItems.js"></script>
+	
+<script>
+
+
+
+$(document).ready(function () {    
+    var allOptions = $('#selectModel option')
+    $('#selectManuf').change(function () {
+        $('#selectModel option').remove()
+        var classN = $('#selectManuf option:selected').prop('class');
+        var opts = allOptions.filter('.' + classN);
+        $.each(opts, function (i, j) {
+            $(j).appendTo('#selectModel');
+        });
+    });
+    
+});
+
+$(document).ready(function myFunction1() {
+	var allOptions = $('#selectModel option');
+	// var sviPocetni = allOptions;
+    $('#selectModel option').remove()
+    var classN = $('#selectManuf option:selected').prop('class');
+    var opts = allOptions.filter('.' + classN);
+    $.each(opts, function (i, j) {
+        $(j).appendTo('#selectModel');
+    });
+    // alert("Page is loaded 123");
+    // allOptions = sviPocetni;
+});
+
+
+function myFunction1() {
+		var allOptions = $('#selectModel option');
+		var sviPocetni = allOptions;
+        $('#selectModel option').remove()
+        var classN = $('#selectManuf option:selected').prop('class');
+        var opts = allOptions.filter('.' + classN);
+        $.each(opts, function (i, j) {
+            $(j).appendTo('#selectModel');
+        });
+        alert("Page is loaded 123");
+      //  allOptions = sviPocetni;
+    }
+
+function myFunction() {
+    alert("Page is loaded");
+}
+</script>	
 </body>
 </html>

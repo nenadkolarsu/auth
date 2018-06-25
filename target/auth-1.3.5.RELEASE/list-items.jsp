@@ -20,12 +20,14 @@
 						<div class='panel-body'>
 							<div class='row spacer-bottom'>
 								<div class='col-lg-12'>
+										<input type="button" onclick="location.href='/';" value="Cancel"  class="btn-lg button-novi"/>
+								
 									<a href="${new_item}">
 										<button
 											class='btn btn-lg btn-success button-novi border-radius-0'>
 											<span class='glyphicon glyphicon-file'></span> New
 										</button>
-									</a> <a href="${print_item}">
+									</a> <a href="${print_item}" target="_blank">
 										<button
 											class='btn btn-lg btn-success button-novi border-radius-0 margin-left-10'>
 											<span class='fa fa-print'></span> Print
@@ -79,12 +81,19 @@
 				<c:when test="${title == 'Types of warehouse'}">
 			<script src="static/js/datatable-vrstemagacina.js"></script>
 		</c:when>
+		<c:when test="${title == 'States'}">
+			<script src="static/js/datatable-states.js"></script>
+		</c:when>
+		<c:when test="${title == 'Zip Codes'}">
+			<script src="static/js/datatable-zipcodes.js"></script>
+		</c:when>
+		
+		<c:when test="${title == 'Types of Documents'}">
+			<script src="static/js/datatable-typesofdocuments.js"></script>
+		</c:when>
 	</c:choose>
 
-	<!-- 		<script src="static/js/datatable-klasifikacije.js"></script> -->
-	>
-	<!-- 				<script src="static/js/datatable-poreskegrupe.js"></script> -->
-	<!-- Page-Level Demo Scripts - Tables - Use for reference -->
+
 	<script>
 	
 		function ConfirmDelete() {

@@ -21,7 +21,7 @@
 				<div class="col-lg-12">
 					<div class='panel panel-default'>
 					
-						<div class='panel-heading'>${title} </div>
+						<div class='panel-heading'>${title} dat ${dokumentStavke.idDokument.datum} id ${dokumentStavke.idDokument.id}</div>
 <%-- 						<div>${dokumentStavke.typesOfDocuments}</div> --%>
 <%-- 						<div>${typesOfDocuments} aaaaaaaaaaaaa</div> --%>
 <%-- 						<div>${dokumentStavke.magacini} bbbbbbbbbb</div> --%>
@@ -37,6 +37,12 @@
  										<input type="hidden" name="${_csrf.parameterName}" 
  											value="${_csrf.token}" /> 
 
+ 										<input type="hidden" name="aktivan" 
+ 											value="1" /> 
+ 											 											
+<!--  										<input type="hidden" name="datum"  -->
+<%--  											value="${dokumentStavke.idDokument.datum}" />  --%>
+ 											
  										<form:input type="hidden" name="id" path="id" 
  											value="${dokumentStavke.id}" /> 
  											
@@ -44,7 +50,7 @@
 										<div class="form-group"${error != null ? 'has-error' : ''}'>
 											<label class='font-awesome'>Sifra artikala</label>
 
-											<form:select path="artikli.id" class="form-control">
+											<form:select path="artikli.id" class="form-control" tabindex="1">
 <%-- 												<form:option value="0" label="--- Select ---" /> --%>
 												<form:options items="${eArtikli}" />
 											</form:select>
@@ -111,7 +117,7 @@
 										<div class='form-group ${error != null ? 'has-error' : ''}'>
 											<label class='font-oxygen'>Kolicina</label>
  											<form:input type="text" class="form-control" id="kolicina" 
- 												path="kolicina" placeholder='Kolicina' 
+ 												path="kolicina" placeholder='Kolicina' tabindex="2"
  												value="${dokumentStavke.kolicina}" /> 
 											<p class="help-block">
  												<form:errors path="kolicina" class="help-block" /> 
@@ -121,19 +127,20 @@
 										<div class='form-group ${error != null ? 'has-error' : ''}'>
 											<label class='font-oxygen'>Cena</label>
  											<form:input type="text" class="form-control" id="kolicina" 
- 												path="cena" placeholder='Cena' 
+ 												path="cena" placeholder='Cena'  tabindex="3"
  												value="${dokumentStavke.cena}" /> 
 											<p class="help-block">
  												<form:errors path="cena" class="help-block" /> 
 											</p>
 										</div>
-																
+										
+										<c:set var = "iznos" scope = "session" value = "${dokumentStavke.cena*dokumentStavke.kolicina}"/>
 										
 										<div class='form-group ${error != null ? 'has-error' : ''}'>
 											<label class='font-oxygen'>Iznos</label>
- 											<form:input type="text" class="form-control" id="kolicina" 
- 												path="iznos" placeholder='Iznos' 
- 												value="${dokumentStavke.iznos}" /> 
+ 											<form:input type="text" class="form-control" id="iznos" 
+ 												path="iznos" placeholder='Iznos' tabindex="4"
+ 												value="${dokumentStavke.cena*dokumentStavke.kolicina}" readonly="true"/> 
 											<p class="help-block">
  												<form:errors path="iznos" class="help-block" /> 
 											</p>
@@ -150,11 +157,12 @@
 											</p>
 										</div>																							
 
-										<button type="submit" class="btn-lg button-novi">
+										<button type="submit" class="btn-lg button-novi" tabindex="5">
 											<i class='fa fa-floppy-o'></i> Save
 										</button>
 										
-										<input type="button" onclick="location.href='dokumentstavkefinal.html?page=0&id=${dokumentStavke.idDokument.id}';" value="Cancel"  class="btn-lg button-novi"/>
+										
+										<input type="button" onclick="location.href='dokumentstavkefinal.html?page=0&id=${dokumentStavke.idDokument.id}';" value="Cancel"  class="btn-lg button-novi" tabindex="6"/>
 <!-- 										<button type="reset" class="btn-lg button-novi"> -->
 <!-- 											<i class='fa fa-reply'></i> Cancel -->
 <!-- 										</button> -->

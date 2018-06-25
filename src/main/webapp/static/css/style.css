@@ -26,6 +26,12 @@
 	border-radius:0;
 }
 
+.button-novi:focus{
+	background-color:#337AB7;
+	color:#f3f3f3;
+	transition: background-color .3s, color .2s;
+}
+
 .button-novi:hover{
 	background-color:#337AB7;
 	color:#f3f3f3;
@@ -197,4 +203,45 @@ table.dataTable.no-footer{
 
 .sort-arrows{
 	font-size:10px;
+}
+
+#selected-warehouse-articles select {width:100%; display:block; }
+
+.spacer-top-20 { 
+	margin-top:20px;
+}
+
+.input-warehouse-article {
+	display:block; width:100%;
+}
+
+.glyphicon-plus {
+	color:#50C878;
+}
+
+.glyphicon-minus {
+	color:red;
+}
+
+.inline-button {
+	display:inline-block;
+}
+
+.error-text {
+	color:red; font-size: 1.5em;
+}
+
+#article-info {
+	margin-bottom:10px;
+}
+
+.img-height {height:200px; width:auto}
+
+.thumbnail-header a {color:white}
+
+.divider-nesto {
+    height: 1px;
+    margin: 9px 0;
+    overflow: hidden;
+    background-color: #e5e5e5;
 }

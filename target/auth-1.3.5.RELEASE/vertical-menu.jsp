@@ -29,21 +29,62 @@
 					</ul>
 				</li>
 				<li>
-					<a href='#'><i class='fa fa-users fa-fw'></i> Komitenti<span class='fa arrow'></span></a>
+					<a href='#'><i class="fa fa-btc" aria-hidden="true"></i> Komitenti<span class='fa arrow'></span></a>
 					<ul class='nav nav-second-level'>
-						<li><a href='list-partners.php'>Komitenti</a></li>
-
+						<li><a href='/partner.html'>Komitenti</a></li>
+						<li><a href='/states.html'>Drzave</a></li>	
+						<li><a href='/zipCodes.html'>Zip codes</a></li>
+						<li><a href='/statesAngular.jsp'>States</a>
 					</ul>
 				</li>
 				
-				<li>
-					<a href='#'><i class="fa fa-info fa-fw"></i> Login<span class="fa arrow"></span></a>
+				<li>				
+					<a href='#'><i class="fa fa-th-large" aria-hidden="true"></i> Dokumenti<span class="fa arrow"></span></a>
 					<ul class="nav nav-second-level">
-						<li><a href='login.jsp'><i class="fa fa-user fa-fw"></i>Login</a></li>
-						<li><a href='registration'><i class="fa fa-gear fa-fw"></i>Registration</a></li>
-						<li><a href="logout.html"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
+						<li><a href='/dokument.html'>Dokument</a></li>
+						<li><a href='/typesOfDocuments.html'>Tipovi dokumenata</a></li>
+						<li><a href='#'></a></li>
 					</ul>
-				</li>				
+				</li>								
+				
+<!-- 				<li> -->
+<!-- 					<a href='#'><i class="fa fa-info fa-fw"></i> Login<span class="fa arrow"></span></a> -->
+<!-- 					<ul class="nav nav-second-level"> -->
+<!-- 						<li><a href='login.jsp'><i class="fa fa-user fa-fw"></i>Login</a></li> -->
+<!-- 						<li><a href='registration'><i class="fa fa-gear fa-fw"></i>Registration</a></li> -->
+<!-- 						<li><a href="logout.html"><i class="fa fa-sign-out fa-fw"></i> Logout</a> -->
+<!-- 					</ul> -->
+<!-- 				</li>				 -->
+
+
+
+				<li>
+					<a href='#'><i class="fa fa-info fa-fw"></i> Izvestaji<span class="fa arrow"></span></a>
+					<ul class="nav nav-second-level">
+						<li><a href='/find_all_articles.html'><i class="fa fa-list"></i>Kartice magacin artikal</a></li>
+						<li class="divider-nesto"></li>
+						<li><a href='/find_all_articles_partners.html'><i class="fa fa-list"></i>Kartice artikal partner</a></li>
+						<li class="divider-nesto"></li>
+					    <li><a href='/find_all_articles_partners_magacini.html'><i class="fa fa-list" ></i>Kartice artikal partner magacin-objekat</a></li>					
+					</ul>
+				</li>		
+	
+								
+<!-- 				<li> -->
+<!-- 					<a href='#'><i class="fa fa-info fa-fw"></i> Examples<span class="fa arrow"></span></a> -->
+<!-- 					<ul	class='nav nav-second-level'> -->
+
+<!-- 						<li><a href='/test/angular/statesCRUD/statesDataAngularJS.html'>Angular states </a></li> -->
+<!-- 						<li><a href='/test/angular/simplePagination/index.html'>Angular simple pagination</a></li> -->
+<!-- 						<li><a href='/test/angular/angularPagination/index.html'>Angular pagination with search</a></li> -->
+<!-- 					</ul> -->
+<!-- 				</li> -->
+
+<!-- 				<li> -->
+<!-- 					<i class="fa fa-spinner fa-pulse fa-3x fa-fw"></i> -->
+<!-- 					<span class="sr-only">Loading...</span> -->
+<!-- 				</li> -->
+			
 			</ul>
 		</div>
 </div>

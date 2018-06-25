@@ -29,7 +29,7 @@
 
 								<div class='col-lg-12'>
 
-									<c:url value="dokumentStavke_back.html" var="displayURL">
+									<c:url value="dokument.html" var="displayURL">
 <%-- 										<c:param name="brDokumenta" value="${param.id}" /> --%>
 <%-- 										<c:param name="page" value="${param.page}" /> --%>
 									</c:url>

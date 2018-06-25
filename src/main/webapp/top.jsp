@@ -38,13 +38,9 @@
 
 	<link rel="stylesheet" href="https://cdn.datatables.net/1.10.12/css/jquery.dataTables.css">
 	<link rel="stylesheet" href="static/css/style.css">
-	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.4/angular.js"></script>
-	<script
-			  src="http://code.jquery.com/jquery-3.3.1.js"
-			  integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
-			  crossorigin="anonymous"></script>
-			  
-	<script type="text/javascript" src="static/vendor/bootstrap/js/bootstrap.js"></script>
+	
+
+<!-- 	<script type="text/javascript" src="static/vendor/bootstrap/js/bootstrap.js"></script> -->
 	
 <!-- 	<script src="static/js/testController.js"></script> -->
 	

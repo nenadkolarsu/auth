@@ -9,7 +9,7 @@
 			<%-- 	<%@ include file="index.jsp" %> --%>
 			<div class='row'>
 				<div class="col-lg-12">
-					<h3 class="page-header">Sistem za upravljanje paletama - Pionir DOO</h3>
+					<h4 class="page-header">Evidencija proizvoda i robe (Records of goods and packaging) ver 0.05 </h4>
 				</div>
 				<div class='col-lg-12 '>
 					<div class='row spacer-bottom'>
@@ -24,43 +24,58 @@
 						<div class='col-lg-3 col-lg-offset-1 thumbnail-border'>
 							<div class='row border-bottom thumbnail-header'>
 								<div class='col-lg-12'>
-									<h4>Prijemnice</h4>
+									
+									<a href='/dokument.html' ><h4>Karamela</h4></a>
 								</div>
 							</div>
+							
 							<div class='row'>
 								<div class='col-lg-12 margin-top-bottom-40'>
-									<a href='#' class='thumbnail-link'><i class="fa fa-file-o thumbnail-icon-size" aria-hidden="true"></i><br />Prijemnice</a>
+								
+																
+									<a href='/dokument.html' class='thumbnail-link'><img src="/static/important-images/Karamela_Lesnik_100g.jpg" alt="..." class="img-thumbnail img-height"></a>
 								</div>
 							</div>
+							
 						</div><!-- end of col-lg-4 for content -->
 						<div class='col-lg-3 col-lg-offset-1 thumbnail-border margin-thumbnail-align'>
 							<div class='row border-bottom thumbnail-header'>
 								<div class='col-lg-12'>
-									<h4>Otpremnice</h4>
+								<a href='/dokument.html' ><h4>Medeno srce</h4></a>
+
 								</div>
 							</div>
 							<div class='row'>
 								<div class='col-lg-12 margin-top-bottom-40'>
-									<a href='#' class='thumbnail-link'><i class="fa fa-file-o thumbnail-icon-size" aria-hidden="true"></i><br />Otpremnice</a>
+
+									<a href='/dokument.html' class='thumbnail-link'> <img src="/static/important-images/Medeno_srce_150g_EN.jpg" alt="..." class="img-thumbnail img-height"></a>
 								</div>
 							</div>
 						</div><!-- end of col-lg-4 for content -->
+	
+<!-- 	<img src="..." alt="..." class="img-thumbnail"> -->
+						
 						<div class='col-lg-3 thumbnail-border'>
 							<div class='row border-bottom thumbnail-header'>
 								<div class='col-lg-12'>
-									<h4>Pregled magacina</h4>
+									<a href='/dokument.html' ><h4>Galeb</h4></a>
 								</div>
 							</div>
 							<div class='row'>
 								<div class='col-lg-12 margin-top-bottom-40'>
-									<a href='#' class='thumbnail-link'><i class="fa fa-file-o thumbnail-icon-size" aria-hidden="true"></i><br />Pregled magacina</a>
+<!-- 								<img src="/static/important-images/Galeb_retro_200g.jpg" alt="..." class="img-thumbnail img-height"> -->
+									<a href='/dokument.html' class='thumbnail-link'>
+									<img src="/static/important-images/Galeb_retro_200g.jpg" alt="..." class="img-thumbnail img-height"></a>
 								</div>
 							</div>		
 						</div><!-- end of col-lg-4 for content -->
+						
 					</div>
 				</div>
 		</div><!-- end of page wrapper -->
+	</div>
 	</div><!-- end of wrapper -->
+	
 	<%@ include file="scripts.jsp"%>
 </body>
 </html>

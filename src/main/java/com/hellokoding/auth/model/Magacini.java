@@ -17,6 +17,7 @@ import javax.persistence.PrePersist;
 import javax.persistence.PreUpdate;
 import javax.persistence.Table;
 
+import org.hibernate.validator.constraints.NotEmpty;
 import org.json.JSONObject;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
@@ -46,6 +47,7 @@ public class Magacini implements Serializable {
 	private String code;
     private String name;
     private String remark;
+    private String adresa;
     private String akcija;
     private Boolean aktivan;
     private Date timestamp;
@@ -59,6 +61,20 @@ public class Magacini implements Serializable {
   //  @JsonIgnore
     @JsonBackReference
     private VrsteMagacina vrsteMagacina;
+    
+    
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "partner_id" , referencedColumnName = "id")
+  //  @JsonIgnore
+    @JsonBackReference
+    private Partner partner;    
+    
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "ptt_id" , referencedColumnName = "id")
+  //  @JsonIgnore
+    @JsonBackReference
+    private PttBrojevi pttBrojevi;    
+    
     
     public Magacini(){
     }
@@ -84,6 +100,7 @@ public class Magacini implements Serializable {
         this.akcija = akcija;
     }
     // name
+    @NotEmpty
     public String getName() {
         return name;
     }
@@ -117,6 +134,7 @@ public class Magacini implements Serializable {
         this.timestamp = timestamp;
     }   
     
+    @NotEmpty
     public String getCode() {
 		return code;
 	}
@@ -166,6 +184,7 @@ public class Magacini implements Serializable {
 	}
 
 	// vrste magacina
+
     public void setVrsteMagacina(VrsteMagacina vrsteMagacina){
     	this.vrsteMagacina = vrsteMagacina;
     }
@@ -187,4 +206,30 @@ public class Magacini implements Serializable {
         info = jsonInfo.toString();
         return info;
     }
+
+	public Partner getPartner() {
+		return partner;
+	}
+
+	public void setPartner(Partner partner) {
+		this.partner = partner;
+	}
+
+	public String getAdresa() {
+		return adresa;
+	}
+
+	public void setAdresa(String adresa) {
+		this.adresa = adresa;
+	}
+
+	public PttBrojevi getPttBrojevi() {
+		return pttBrojevi;
+	}
+
+	public void setPttBrojevi(PttBrojevi pttBrojevi) {
+		this.pttBrojevi = pttBrojevi;
+	}
+    
+    
 }
