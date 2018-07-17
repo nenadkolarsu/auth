@@ -31,7 +31,7 @@
 							<div class='row'>
 								<div class='col-lg-4'>
 
-									<form:form method="POST" action="/save_dokumentStavke.html"
+									<form:form method="POST" action="/save_dokumentStavkeMmp.html"
   										modelAttribute="dokumentStavke">  
 
  										<input type="hidden" name="${_csrf.parameterName}" 
@@ -195,7 +195,7 @@
 										</button>
 										
 										
-										<input type="button" onclick="location.href='dokumentstavkefinal.html?page=0&id=${dokumentStavke.idDokument.id}';" value="Cancel"  class="btn-lg button-novi" tabindex="6"/>
+										<input type="button" onclick="location.href='dokumentStavkefinalmmp.html?page=0&id=${dokumentStavke.idDokument.id}';" value="Cancel"  class="btn-lg button-novi" tabindex="6"/>
 <!-- 										<button type="reset" class="btn-lg button-novi"> -->
 <!-- 											<i class='fa fa-reply'></i> Cancel -->
 <!-- 										</button> -->

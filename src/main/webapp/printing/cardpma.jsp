@@ -39,7 +39,12 @@
 				<div class='row text-center'>
 					<h4>Kartica artikla za period od dana ${oddana} do dana
 						${dodana}</h4>
-
+<!-- 					<h4> -->
+<!-- 						Kartica artikla za period od dana -->
+<%-- 						<fmt:formatDate value="${oddana}" type="both" dateStyle="medium" /> --%>
+<!-- 						do dana -->
+<%-- 						<fmt:formatDate value="${dodana}" type="both" dateStyle="medium" /> --%>
+<!-- 					</h4> -->
 				</div>
 			</div>
 
@@ -81,7 +86,35 @@
 				<%
 					SpecifikacijaKartica sk1 = new SpecifikacijaKartica();
 				%>
-
+					<c:if
+						test="${karticeStanje=='stanje'}">
+						<table class='tableDocuments'>
+							<thead id="table-head-first-row">
+								<th></th>
+								<th colspan="3">ARTIKAL / MAGACIN</th>
+								<th class='text-right'>KOLICINA</th>
+								<th class='text-right'>KOLICINA</th>
+								<th></th>
+								<th></th>
+								<th class='text-right'>IZNOS</th>
+								<th class='text-right'>IZNOS</th>
+								<th></th>
+							</thead>
+							<thead id='table-head-second-row'>
+								<th style="width: 5%;"></th>
+								<th style="width: 10%;"> / PARTNER</th>
+								<th style="width: 5%;"></th>
+								<th style="width: 5%;"></th>
+								<th style="width: 10%;" class='text-right'>ULAZ</th>
+								<th style="width: 10%;" class='text-right'>IZLAZ</th>
+								<th style="width: 10%;" class='text-right'>STANJE</th>
+								<th style="width: 10%;" class='text-right'>CENA</th>
+								<th style="width: 10%;" class='text-right'>ULAZ</th>
+								<th style="width: 10%;" class='text-right'>IZLAZ</th>
+								<th style="width: 10%;" class='text-right'>STANJE</th>
+							</thead>
+							</c:if>
+							
 				<c:forEach items="${stavkart}" var="stavka">
 
 					<%--  					<c:out value="${receiveNewsletter}" />  --%>
@@ -95,19 +128,48 @@
 							<%-- <c:out value="artikli nisu isti" /> --%>
 							</tbody>
 							</table>
-							<table class='tableDocuments'>
-								<thead id="table-head-first-row">
-									<th style="width: 5%;">Artikal</th>
-									<!-- 								<th style="width: 10%;"></th> -->
-									<th colspan="2" style="width: 20%;">${aktivniArtikalName}</th>
-									<th style="width: 10%;" class='text-right'>${totalUlaz}</th>
-									<th style="width: 10%;" class='text-right'>${totalIzlaz}</th>
-									<th style="width: 10%;" class='text-right'>${totalKol}</th>
-									<th style="width: 10%;" class='text-right'></th>
-									<th style="width: 10%;" class='text-right'>${totalDuguje}</th>
-									<th style="width: 10%;" class='text-right'>${totalPotrazuje}</th>
-									<th style="width: 10%;" class='text-right'>${totalVred}</th>
-								</thead>
+							
+							<table class='tableDocuments' style='border-top:none;'>
+							
+<!-- 								<thead id="table-head-first-row"> -->
+<!-- 									<th style="width: 5%;"></th> -->
+<%-- 					<c:if --%>
+<%-- 						test="${karticeStanje=='stanje'}">									 --%>
+<%-- 									<th style="width: 22.5%;">${aktivniArtikalName}</th> --%>
+<%-- 					</c:if> --%>
+<%-- 					<c:if --%>
+<%-- 						test="${karticeStanje=='kartice'}">									 --%>
+<!-- 									<th style="width: 22.5%;">Svega artikal:</th> -->
+<%-- 					</c:if>					 --%>
+<%-- 									<th style="width: 10%;" class='text-right'>${totalUlaz}</th> --%>
+<%-- 									<th style="width: 10%;" class='text-right'>${totalIzlaz}</th> --%>
+<%-- 									<th style="width: 10%;" class='text-right'>${totalKol}</th> --%>
+<!-- 									<th style="width: 10%;" class='text-right'></th> -->
+<%-- 									<th style="width: 10%;" class='text-right'>${totalDuguje}</th> --%>
+<%-- 									<th style="width: 10%;" class='text-right'>${totalPotrazuje}</th> --%>
+<%-- 									<th style="width: 10%;" class='text-right'>${totalVred}</th> --%>
+<!-- 								</thead> -->
+
+								<tr id="table-head-first-row">									
+								<td style="width: 5%;"></td>
+					<c:if
+						test="${karticeStanje=='stanje'}">									
+									<td style="width: 22.5%;">${aktivniArtikalName}</td>
+					</c:if>
+					<c:if
+						test="${karticeStanje=='kartice'}">									
+									<td style="width: 22.5%;">Svega artikal:</td>
+					</c:if>					
+									<td style="width: 10%;" class='text-right'>${totalUlaz}</td>
+									<td style="width: 10%;" class='text-right'>${totalIzlaz}</td>
+									<td style="width: 10%;" class='text-right'>${totalKol}</td>
+									<td style="width: 10%;" class='text-right'></td>
+									<td style="width: 10%;" class='text-right'>${totalDuguje}</td>
+									<td style="width: 10%;" class='text-right'>${totalPotrazuje}</td>
+									<td style="width: 10%;" class='text-right'>${totalVred}</td>
+								</tr>
+
+
 
 							</table>
 							<%
@@ -159,19 +221,49 @@
 						<c:if test="${firstTime==false}">
 							</tbody>
 							</table>
-							<table class='tableDocuments'>
-								<thead id="table-head-first-row">
-									<!-- 								<th style="width: 5%;"></th> -->
-									<th style="width: 5%;">Mag:</th>
-									<th colspan="2" style="width: 20%;">${aktivniMagacinName}</th>
-									<th style="width: 10%;" class='text-right'>${totalUlazm}</th>
-									<th style="width: 10%;" class='text-right'>${totalIzlazm}</th>
-									<th style="width: 10%;" class='text-right'>${totalKolm}</th>
-									<th style="width: 10%;" class='text-right'></th>
-									<th style="width: 10%;" class='text-right'>${totalDugujem}</th>
-									<th style="width: 10%;" class='text-right'>${totalPotrazujem}</th>
-									<th style="width: 10%;" class='text-right'>${totalVredm}</th>
-								</thead>
+							
+
+							
+<!-- 								<thead id="table-head-first-row"> -->
+
+<!--  									<th style="width: 5%;"></th>      -->
+<%-- 					<c:if --%>
+<%-- 						test="${karticeStanje=='stanje'}">									 --%>
+<%-- 									<th style="width: 22.5%;">${aktivniMagacinName}</th> --%>
+<%-- 					</c:if> --%>
+<%-- 					<c:if --%>
+<%-- 						test="${karticeStanje=='kartice'}">									 --%>
+<!-- 									<th style="width: 22.5%;">Svega magacin:</th> -->
+<%-- 					</c:if>					 --%>
+<%-- 									<th style="width: 10%;" class='text-right'>${totalUlazm}</th> --%>
+<%-- 									<th style="width: 10%;" class='text-right'>${totalIzlazm}</th> --%>
+<%-- 									<th style="width: 10%;" class='text-right'>${totalKolm}</th> --%>
+<!-- 									<th style="width: 10%;" class='text-right'></th> -->
+<%-- 									<th style="width: 10%;" class='text-right'>${totalDugujem}</th> --%>
+<%-- 									<th style="width: 10%;" class='text-right'>${totalPotrazujem}</th> --%>
+<%-- 									<th style="width: 10%;" class='text-right'>${totalVredm}</th> --%>
+<!-- 								</thead> -->
+
+							<table class='tableDocuments' style='border-top:none;'>
+								<tr id="table-head-first-row">
+
+ 									<td style="width: 5%;"></td>     
+					<c:if
+						test="${karticeStanje=='stanje'}">									
+									<td style="width: 22.5%;">${aktivniMagacinName}</td>
+					</c:if>
+					<c:if
+						test="${karticeStanje=='kartice'}">									
+									<td style="width: 22.5%;">Svega magacin:</td>
+					</c:if>					
+									<td style="width: 10%;" class='text-right'>${totalUlazm}</td>
+									<td style="width: 10%;" class='text-right'>${totalIzlazm}</td>
+									<td style="width: 10%;" class='text-right'>${totalKolm}</td>
+									<td style="width: 10%;" class='text-right'></td>
+									<td style="width: 10%;" class='text-right'>${totalDugujem}</td>
+									<td style="width: 10%;" class='text-right'>${totalPotrazujem}</td>
+									<td style="width: 10%;" class='text-right'>${totalVredm}</td>
+								</tr>
 
 							</table>
 
@@ -188,7 +280,7 @@
 							value="${stavka.idDokument.magacini.id}" />
 						<c:set var="aktivniMagacinName"
 							value="${stavka.idDokument.magacini.name}" />
-
+						<br/>
 						<!-- ************************* KRAJ UKUPNO ZA MAGACIN ********************************  -->
 
 
@@ -197,6 +289,7 @@
 
 					<c:if test="${aktivniPartner!=stavka.idDokument.partner.id }">
 						<%-- <c:out value="artikli nisu isti" /> --%>
+
 						</tbody>
 						</table>
 						<c:if test="${firstTime==false}">
@@ -204,7 +297,14 @@
 								<thead id="table-head-first-row">
 									<!-- 								<th style="width: 5%;"></th> -->
 									<th style="width: 5%;">Part:</th>
-									<th colspan="2" style="width: 20%;">${aktivniPartnerName}</th>
+					<c:if
+						test="${karticeStanje=='stanje'}">			
+									<th style="width: 22.5%;">${aktivniPartnerName}</th>
+					</c:if>				
+					<c:if
+						test="${karticeStanje=='kartice'}">									
+									<th style="width: 22.5%;"></th>
+					</c:if>					
 									<th style="width: 10%;" class='text-right'>${totalUlazp}</th>
 									<th style="width: 10%;" class='text-right'>${totalIzlazp}</th>
 									<th style="width: 10%;" class='text-right'>${totalKolp}</th>
@@ -228,25 +328,26 @@
 							value="${stavka.idDokument.partner.id}" />
 						<c:set var="aktivniPartnerName"
 							value="${stavka.idDokument.partner.name}" />
-<br/>
+<!-- 						<br /> -->
 					</c:if>
 
 
 
 					<!-- ***************** zaglavlje partner ************* -->
 
-					<c:if test="${stampaZaglavljaPartnera==true && karticeStanje=='kartice'}">
+					<c:if
+						test="${stampaZaglavljaPartnera==true && karticeStanje=='kartice'}">
 
 						<c:set value="${false}" var="stampaZaglavljaPartnera"></c:set>
 
 						<br />
 						<div class='row' id='article-info'>
 							<div class='col-xs-2'>
-								<p>Partner sifra: ${stavka.idDokument.partner.id}
+								<p>Partner: ${stavka.idDokument.partner.id}
 									${stavka.idDokument.partner.code}</p>
 								<%-- <p>Id: ${stavka.artikli.id} aktivni ${aktivniArtikal}</p> --%>
 							</div>
-							<div class='col-xs-6'>
+							<div class='col-xs-10'>
 								<p>${stavka.idDokument.partner.name}</p>
 							</div>
 						</div>
@@ -263,11 +364,11 @@
 						<!-- 						<br/> -->
 						<div class='row' id='article-info'>
 							<div class='col-xs-2'>
-								<p>Magacin Šifra: ${stavka.idDokument.magacini.id}
+								<p>Magacin: ${stavka.idDokument.magacini.id}
 									${stavka.idDokument.magacini.code}</p>
 								<%-- <p>Id: ${stavka.artikli.id} aktivni ${aktivniArtikal}</p> --%>
 							</div>
-							<div class='col-xs-6'>
+							<div class='col-xs-10'>
 								<p>${stavka.idDokument.magacini.name}</p>
 							</div>
 						</div>
@@ -277,17 +378,18 @@
 
 					<!-- ***************** zaglavlje artikla ************* -->
 
-					<c:if test="${stampaZaglavljaArtikla==true && karticeStanje=='kartice'}">
+					<c:if
+						test="${stampaZaglavljaArtikla==true && karticeStanje=='kartice'}">
 
 						<c:set value="${false}" var="stampaZaglavljaArtikla"></c:set>
 
 						<div class='row' id='article-info'>
 							<div class='col-xs-2'>
-								<p>Artikal Šifra: ${stavka.artikli.id}
+								<p>Artikal: ${stavka.artikli.id}
 									${stavka.artikli.code}</p>
 								<%-- <p>Id: ${stavka.artikli.id} aktivni ${aktivniArtikal}</p> --%>
 							</div>
-							<div class='col-xs-2'>
+							<div class='col-xs-10'>
 								<p>${stavka.artikli.name}</p>
 							</div>
 						</div>
@@ -295,7 +397,7 @@
 						<table class='tableDocuments'>
 							<thead id="table-head-first-row">
 								<th></th>
-								<th colspan="2">DOKUMENT</th>
+								<th colspan="3">DOKUMENT</th>
 								<th class='text-right'>KOLIČINA</th>
 								<th class='text-right'>KOLIČINA</th>
 								<th></th>
@@ -307,7 +409,8 @@
 							<thead id='table-head-second-row'>
 								<th style="width: 5%;">RB</th>
 								<th style="width: 10%;">DATUM</th>
-								<th style="width: 10%;">BROJ</th>
+								<th style="width: 5%;">VD</th>
+								<th style="width: 5%;">BROJ</th>
 								<th style="width: 10%;" class='text-right'>ULAZ</th>
 								<th style="width: 10%;" class='text-right'>IZLAZ</th>
 								<th style="width: 10%;" class='text-right'>STANJE</th>
@@ -365,22 +468,24 @@
 									value="${totalDugujes + stavka.duguje}" />
 								<c:set var="totalPotrazujes"
 									value="${totalPotrazujes + stavka.potrazuje}" />
-
+								<c:set var="tipDokumentaIBrojDokumenta"
+									value="${stavka.idDokument.typesOfDocuments.name || stavka.idDokument.brojDokumenta}" />
 								<!-- 								<table class='tableDocuments'> -->
-					<c:if test="${karticeStanje=='kartice'}">
-								<tr>
-									<td style="width: 5%;">${stavka.id}</td>
-									<td style="width: 10%;">${stavka.datum}</td>
-									<td style="width: 10%;">${stavka.idDokument.brojDokumenta}</td>
-									<td style="width: 10%;" class='text-right'>${stavka.ulaz}</td>
-									<td style="width: 10%;" class='text-right'>${stavka.izlaz}</td>
-									<td style="width: 10%;" class='text-right'>${totalKol}</td>
-									<td style="width: 10%;" class='text-right'>${stavka.cena}</td>
-									<td style="width: 10%;" class='text-right'>${stavka.duguje}</td>
-									<td style="width: 10%;" class='text-right'>${stavka.potrazuje}</td>
-									<td style="width: 10%;" class='text-right'>${totalVred}</td>
-								</tr>
-</c:if>
+								<c:if test="${karticeStanje=='kartice'}">
+									<tr>
+										<td style="width: 5%;">${stavka.id}</td>
+										<td style="width: 10%;">${stavka.datum}</td>
+										<td style="width: 5%;">${stavka.idDokument.typesOfDocuments.name}</td>
+										<td style="width: 5%;">${stavka.idDokument.brojDokumenta}</td>
+										<td style="width: 10%;" class='text-right'>${stavka.ulaz}</td>
+										<td style="width: 10%;" class='text-right'>${stavka.izlaz}</td>
+										<td style="width: 10%;" class='text-right'>${totalKol}</td>
+										<td style="width: 10%;" class='text-right'>${stavka.cena}</td>
+										<td style="width: 10%;" class='text-right'>${stavka.duguje}</td>
+										<td style="width: 10%;" class='text-right'>${stavka.potrazuje}</td>
+										<td style="width: 10%;" class='text-right'>${totalVred}</td>
+									</tr>
+								</c:if>
 								<c:set value="${false}" var="firstTime"></c:set>
 
 								</c:forEach>
@@ -390,21 +495,52 @@
 							</tbody>
 						</table>
 
-						<table class='tableDocuments'>
-							<thead id="table-head-first-row">
-								<!-- 								<th style="width: 5%;"></th> -->
-								<th style="width: 5%;">Artikal</th>
-								<th colspan="2" style="width: 20%;">${aktivniArtikalName}</th>
-								<th style="width: 10%;" class='text-right'>${totalUlaz}</th>
-								<th style="width: 10%;" class='text-right'>${totalIzlaz}</th>
-								<th style="width: 10%;" class='text-right'>${totalKol}</th>
-								<th style="width: 10%;" class='text-right'></th>
-								<th style="width: 10%;" class='text-right'>${totalDuguje}</th>
-								<th style="width: 10%;" class='text-right'>${totalPotrazuje}</th>
-								<th style="width: 10%;" class='text-right'>${totalVred}</th>
-							</thead>
+						<table class='tableDocuments' style='border-top:none'; >
+								<tr id="table-head-first-row">									
+								<td style="width: 5%;"></td>
+					<c:if
+						test="${karticeStanje=='stanje'}">									
+									<td style="width: 22.5%;">${aktivniArtikalName}</td>
+					</c:if>
+					<c:if
+						test="${karticeStanje=='kartice'}">									
+									<td style="width: 22.5%;">Svega artikal:</td>
+					</c:if>					
+									<td style="width: 10%;" class='text-right'>${totalUlaz}</td>
+									<td style="width: 10%;" class='text-right'>${totalIzlaz}</td>
+									<td style="width: 10%;" class='text-right'>${totalKol}</td>
+									<td style="width: 10%;" class='text-right'></td>
+									<td style="width: 10%;" class='text-right'>${totalDuguje}</td>
+									<td style="width: 10%;" class='text-right'>${totalPotrazuje}</td>
+									<td style="width: 10%;" class='text-right'>${totalVred}</td>
+								</tr>
 
-						</table>
+
+
+							</table>						
+						
+						
+<!-- 							<thead id="table-head-first-row"> -->
+<!-- 																<th style="width: 5%;"></th> -->
+<!-- 								<th style="width: 5%;">Art:</th> -->
+<%-- 					<c:if --%>
+<%-- 						test="${karticeStanje=='stanje'}">								 --%>
+<%-- 								<th style="width: 22.5%;">${aktivniArtikalName}</th> --%>
+<%-- 					</c:if> --%>
+<%-- 					<c:if --%>
+<%-- 						test="${karticeStanje=='kartice'}">									 --%>
+<!-- 									<th style="width: 22.5%;"></th> -->
+<%-- 					</c:if>					 --%>
+<%-- 								<th style="width: 10%;" class='text-right'>${totalUlaz}</th> --%>
+<%-- 								<th style="width: 10%;" class='text-right'>${totalIzlaz}</th> --%>
+<%-- 								<th style="width: 10%;" class='text-right'>${totalKol}</th> --%>
+<!-- 								<th style="width: 10%;" class='text-right'></th> -->
+<%-- 								<th style="width: 10%;" class='text-right'>${totalDuguje}</th> --%>
+<%-- 								<th style="width: 10%;" class='text-right'>${totalPotrazuje}</th> --%>
+<%-- 								<th style="width: 10%;" class='text-right'>${totalVred}</th> --%>
+<!-- 							</thead> -->
+
+<!-- 						</table> -->
 
 						<c:set var="totalKol" value="0" />
 						<c:set var="totalVred" value="0" />
@@ -418,22 +554,55 @@
 
 						<!-- ************************* KRAJ UKUPNO ZA ARTIKAL ********************************  -->
 
-						</table>
-						<table class='tableDocuments'>
-							<thead id="table-head-first-row">
-								<!-- 								<th style="width: 5%;"></th> -->
-								<th style="width: 5%;">Mag:</th>
-								<th colspan="2" style="width: 20%;">${aktivniMagacinName}</th>
-								<th style="width: 10%;" class='text-right'>${totalUlazm}</th>
-								<th style="width: 10%;" class='text-right'>${totalIzlazm}</th>
-								<th style="width: 10%;" class='text-right'>${totalKolm}</th>
-								<th style="width: 10%;" class='text-right'></th>
-								<th style="width: 10%;" class='text-right'>${totalDugujem}</th>
-								<th style="width: 10%;" class='text-right'>${totalPotrazujem}</th>
-								<th style="width: 10%;" class='text-right'>${totalVredm}</th>
-							</thead>
 
 						</table>
+						
+						
+<!-- 						<table class='tableDocuments'> -->
+<!-- 							<thead id="table-head-first-row"> -->
+<!-- 																<th style="width: 5%;"></th> -->
+<!-- 								<th style="width: 5%;">Mag:</th> -->
+<%-- 					<c:if --%>
+<%-- 						test="${karticeStanje=='stanje'}">								 --%>
+<%-- 								<th style="width: 22.5%;">${aktivniMagacinName}</th> --%>
+<%-- 					</c:if> --%>
+<%-- 					<c:if --%>
+<%-- 						test="${karticeStanje=='kartice'}">									 --%>
+<!-- 									<th style="width: 22.5%;"></th> -->
+<%-- 					</c:if>								 --%>
+<%-- 								<th style="width: 10%;" class='text-right'>${totalUlazm}</th> --%>
+<%-- 								<th style="width: 10%;" class='text-right'>${totalIzlazm}</th> --%>
+<%-- 								<th style="width: 10%;" class='text-right'>${totalKolm}</th> --%>
+<!-- 								<th style="width: 10%;" class='text-right'></th> -->
+<%-- 								<th style="width: 10%;" class='text-right'>${totalDugujem}</th> --%>
+<%-- 								<th style="width: 10%;" class='text-right'>${totalPotrazujem}</th> --%>
+<%-- 								<th style="width: 10%;" class='text-right'>${totalVredm}</th> --%>
+<!-- 							</thead> -->
+
+<!-- 						</table> -->
+
+							<table class='tableDocuments' style='border-top:none;'>
+								<tr id="table-head-first-row">
+
+ 									<td style="width: 5%;"></td>     
+					<c:if
+						test="${karticeStanje=='stanje'}">									
+									<td style="width: 22.5%;">${aktivniMagacinName}</td>
+					</c:if>
+					<c:if
+						test="${karticeStanje=='kartice'}">									
+									<td style="width: 22.5%;">Svega magacin:</td>
+					</c:if>					
+									<td style="width: 10%;" class='text-right'>${totalUlazm}</td>
+									<td style="width: 10%;" class='text-right'>${totalIzlazm}</td>
+									<td style="width: 10%;" class='text-right'>${totalKolm}</td>
+									<td style="width: 10%;" class='text-right'></td>
+									<td style="width: 10%;" class='text-right'>${totalDugujem}</td>
+									<td style="width: 10%;" class='text-right'>${totalPotrazujem}</td>
+									<td style="width: 10%;" class='text-right'>${totalVredm}</td>
+								</tr>
+
+							</table>
 
 						<c:set var="totalKolm" value="0" />
 						<c:set var="totalVredm" value="0" />
@@ -441,25 +610,69 @@
 						<c:set var="totalIzlazm" value="0" />
 						<c:set var="totalDugujem" value="0" />
 						<c:set var="totalPotrazujem" value="0" />
-
+						
+						<br/>
+						
 						<!-- 						<br /> -->
 						<!-- ************************* UKUPNO ZA PARTNERA ********************************  -->
 
 						</table>
+						
+<!-- 						<table class='tableDocuments'> -->
+<!-- 							<thead id="table-head-first-row"> -->
+<!-- 																<th style="width: 5%;"></th> -->
+<!-- 								<th style="width: 5%;">Part:</th> -->
+<%-- 					<c:if --%>
+<%-- 						test="${karticeStanje=='stanje'}">								 --%>
+<%-- 								<th style="width: 22.5%;" colspan="3";">${aktivniPartnerName}</th> --%>
+<%-- 					</c:if> --%>
+<%-- 					<c:if --%>
+<%-- 						test="${karticeStanje=='stanje'}">									 --%>
+<!-- 									<th style="width: 22.5%;"></th> -->
+<%-- 					</c:if>					 --%>
+<%-- 								<th style="width: 10%;" class='text-right'>${totalUlazp}</th> --%>
+<%-- 								<th style="width: 10%;" class='text-right'>${totalIzlazp}</th> --%>
+<%-- 								<th style="width: 10%;" class='text-right'>${totalKolp}</th> --%>
+<!-- 								<th style="width: 10%;" class='text-right'></th> -->
+<%-- 								<th style="width: 10%;" class='text-right'>${totalDugujep}</th> --%>
+<%-- 								<th style="width: 10%;" class='text-right'>${totalPotrazujep}</th> --%>
+<%-- 								<th style="width: 10%;" class='text-right'>${totalVredp}</th> --%>
+<!-- 							</thead> -->
+<!-- 						</table> -->
+						
 						<table class='tableDocuments'>
-							<thead id="table-head-first-row">
-								<!-- 								<th style="width: 5%;"></th> -->
-								<th style="width: 5%;">Part:</th>
-								<th style="width: 20%;" colspan="2";">${aktivniPartnerName}</th>
-								<th style="width: 10%;" class='text-right'>${totalUlazp}</th>
-								<th style="width: 10%;" class='text-right'>${totalIzlazp}</th>
-								<th style="width: 10%;" class='text-right'>${totalKolp}</th>
-								<th style="width: 10%;" class='text-right'></th>
-								<th style="width: 10%;" class='text-right'>${totalDugujep}</th>
-								<th style="width: 10%;" class='text-right'>${totalPotrazujep}</th>
-								<th style="width: 10%;" class='text-right'>${totalVredp}</th>
-							</thead>
+							<tr id="table-head-first-row">
+
+ 									<td style="width: 5%;"></td>     
+					<c:if
+						test="${karticeStanje=='stanje'}">									
+									<td style="width: 22.5%;">${aktivniPartnerName}</td>
+					</c:if>
+					<c:if
+						test="${karticeStanje=='kartice'}">									
+									<td style="width: 22.5%;">Svega partner:</td>
+					</c:if>	
+
+<!-- 								<td style="width: 10%;">Partner:</td> -->
+<%-- 					<c:if --%>
+<%-- 						test="${karticeStanje=='stanje'}">								 --%>
+<%-- 								<td style="width: 17.5%;" colspan="3";">${aktivniPartnerName}</td> --%>
+<%-- 					</c:if> --%>
+<%-- 					<c:if --%>
+<%-- 						test="${karticeStanje=='stanje'}">									 --%>
+<!-- 									<td style="width: 22.5%;"></td> -->
+<%-- 					</c:if> --%>
+										
+								<td style="width: 10%;" class='text-right'>${totalUlazp}</td>
+								<td style="width: 10%;" class='text-right'>${totalIzlazp}</td>
+								<td style="width: 10%;" class='text-right'>${totalKolp}</td>
+								<td style="width: 10%;" class='text-right'></td>
+								<td style="width: 10%;" class='text-right'>${totalDugujep}</td>
+								<td style="width: 10%;" class='text-right'>${totalPotrazujep}</td>
+								<td style="width: 10%;" class='text-right'>${totalVredp}</td>
+							</tr>
 						</table>
+						
 						<c:set var="totalKolp" value="0" />
 						<c:set var="totalVredp" value="0" />
 						<c:set var="totalUlazp" value="0" />
@@ -470,19 +683,30 @@
 						<br />
 						<!-- ************************* UKUPNO SVEGA ********************************  -->
 						</table>
-						<table class='tableDocuments'>
-							<thead id="table-head-first-row">
-								<th style="width: 5%;"></th>
-								<th style="width: 10%;">SVEGA:</th>
-								<th style="width: 10%;"></th>
-								<th style="width: 10%;" class='text-right'>${totalUlazs}</th>
-								<th style="width: 10%;" class='text-right'>${totalIzlazs}</th>
-								<th style="width: 10%;" class='text-right'>${totalKols}</th>
-								<th style="width: 10%;" class='text-right'></th>
-								<th style="width: 10%;" class='text-right'>${totalDugujes}</th>
-								<th style="width: 10%;" class='text-right'>${totalPotrazujes}</th>
-								<th style="width: 10%;" class='text-right'>${totalVreds}</th>
-							</thead>
+						<table class='tableDocuments' id='totalAll'>
+<!-- 							<thead id="table-head-first-row"> -->
+<!-- 								<th style="width: 5%;"></th> -->
+<!-- 								<th style="width: 22.5%;">SVEGA:</th> -->
+<%-- 								<th style="width: 10%;" class='text-right'>${totalUlazs}</th> --%>
+<%-- 								<th style="width: 10%;" class='text-right'>${totalIzlazs}</th> --%>
+<%-- 								<th style="width: 10%;" class='text-right'>${totalKols}</th> --%>
+<!-- 								<th style="width: 10%;" class='text-right'></th> -->
+<%-- 								<th style="width: 10%;" class='text-right'>${totalDugujes}</th> --%>
+<%-- 								<th style="width: 10%;" class='text-right'>${totalPotrazujes}</th> --%>
+<%-- 								<th style="width: 10%;" class='text-right'>${totalVreds}</th> --%>
+<!-- 							</thead> -->
+							
+							<tr id="table-head-first-row">
+								<td style="width: 5%;"></td>
+								<td style="width: 22.5%;">SVEGA:</td>
+								<td style="width: 10%;" class='text-right'>${totalUlazs}</td>
+								<td style="width: 10%;" class='text-right'>${totalIzlazs}</td>
+								<td style="width: 10%;" class='text-right'>${totalKols}</td>
+								<td style="width: 10%;" class='text-right'></td>
+								<td style="width: 10%;" class='text-right'>${totalDugujes}</td>
+								<td style="width: 10%;" class='text-right'>${totalPotrazujes}</td>
+								<td style="width: 10%;" class='text-right'>${totalVreds}</td>
+							</tr>							
 						</table>
 						<c:set var="totalKolp" value="0" />
 						<c:set var="totalVredp" value="0" />

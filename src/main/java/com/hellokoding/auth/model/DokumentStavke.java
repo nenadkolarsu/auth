@@ -22,8 +22,12 @@ import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
+
+import org.springframework.beans.factory.annotation.Value;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 
@@ -92,8 +96,10 @@ public class DokumentStavke implements Serializable {
     @Column(name = "roba_naziv")
     private String robaNaziv;
     // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
+    @NotNull @Min(1)
     @Column(name = "kolicina")
     private BigDecimal kolicina;
+    
     @Column(name = "ulaz")
     private BigDecimal ulaz;
     @Column(name = "izlaz")
@@ -106,8 +112,7 @@ public class DokumentStavke implements Serializable {
     private BigDecimal duguje;
     @Column(name = "potrazuje")
     private BigDecimal potrazuje;       
-    @Column(name = "aktivan", columnDefinition="tinyint(1) default 1")
-    
+    @Column(name = "aktivan", columnDefinition="tinyint(1) default 1")    
     private Boolean aktivan;
     @Column(name = "datumvreme")
     @Temporal(TemporalType.TIMESTAMP)
@@ -124,6 +129,11 @@ public class DokumentStavke implements Serializable {
     @Size(max = 45)
     @Column(name = "dokument_stavkecol")
     private String dokumentStavkecol;
+    @Column(name = "povratna", columnDefinition="tinyint(1) default 1")    
+    private Boolean povratna;
+    @Value("0")
+    @Column(name = "status")
+    private int status;
     
     @JoinColumn(name = "id_dokument", referencedColumnName = "id")
     @ManyToOne
@@ -362,4 +372,24 @@ public class DokumentStavke implements Serializable {
 //				+ dokumentStavkecol + ", idDokument=" + idDokument + "]";
 //	} 
     
+	public Boolean getPovratna() {
+		return povratna;
+	}
+
+	public void setPovratna(Boolean povratna) {
+		this.povratna = povratna;
+	}
+
+	public int getStatus() {
+		return status;
+	}
+
+	public void setStatus(int status) {
+		this.status = status;
+	}
+
+	
+	
+
+	
 }

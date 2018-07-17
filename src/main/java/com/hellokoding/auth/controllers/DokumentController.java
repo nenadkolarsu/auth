@@ -91,8 +91,6 @@ public class DokumentController {
 		}
 		sess.setAttribute("ePartner", deptp);
 
-		// magacini
-		// Magacini km = new Magacini();
 		List<Magacini> deptList = magaciniRepository.findAll();
 
 		Map<Long, String> dept = new HashMap<>();
@@ -105,9 +103,20 @@ public class DokumentController {
 		// sess.setAttribute("eMagacini", dept);
 		sess.setAttribute("eMagacini", deptList);
 
+		List<Magacini> eMI = magaciniRepository.findInterniObjekti();
+
+		Map<Long, String> deptEmi = new HashMap<>();
+		// HttpSession sess = request.getSession();
+
+		for (Magacini d : eMI) {
+			deptEmi.put(d.getId(), d.getName());
+		}
+		
+		sess.setAttribute("eMagaciniInterni", eMI);		
+		
 		// Vrste dokumenata
 		// TypesOfDocuments km = new TypesOfDocuments();
-		List<TypesOfDocuments> tdList = typesOfDocumentsRepository.findAll();
+		List<TypesOfDocuments> tdList = typesOfDocumentsRepository.dokTypeNot2(); // .findAll();
 
 		Map<Long, String> tdl = new HashMap<>();
 
@@ -280,4 +289,32 @@ public class DokumentController {
 
 		return mav;
 	}
+	
+	@RequestMapping(value = "/ozvanicenje_dokumenta.html")
+	public String ozvanicenjeDokumenta(@RequestParam Long id, HttpServletRequest request) {
+
+		Dokument d = dokumentRepository.findOne(id);
+		
+		// Dokument aa = new Dokument();
+		
+		List<DokumentStavke> dd = dokumentStavkeRepository.findByIdDokument(d);
+
+			d.setStatus(1);
+		Dokument myobject1 = dokumentRepository.saveAndFlush(d);
+			System.out.println(myobject1);
+			
+			for (DokumentStavke ds : dd) {
+				
+
+				ds.setStatus(1);
+				
+				DokumentStavke myobjectStavke = dokumentStavkeRepository.saveAndFlush(ds);
+				System.out.println(myobjectStavke);				
+			}
+			
+//		}
+
+		return "redirect:dokument.html";
+	}	
+	
 }

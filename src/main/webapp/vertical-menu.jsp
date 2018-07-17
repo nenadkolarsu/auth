@@ -34,16 +34,17 @@
 						<li><a href='/partner.html'>Komitenti</a></li>
 						<li><a href='/states.html'>Drzave</a></li>	
 						<li><a href='/zipCodes.html'>Zip codes</a></li>
-						<li><a href='/statesAngular.jsp'>States</a>
+<!-- 						<li><a href='/statesAngular.jsp'>States</a> -->
 					</ul>
 				</li>
 				
 				<li>				
 					<a href='#'><i class="fa fa-th-large" aria-hidden="true"></i> Dokumenti<span class="fa arrow"></span></a>
 					<ul class="nav nav-second-level">
-						<li><a href='/dokument.html'>Dokument</a></li>
+						<li><a href='/mmp.html'>Medjumagacinski prenos</a></li>					
+						<li><a href='/dokument.html'>Prijemnice - Otpremnice</a></li>
 						<li><a href='/typesOfDocuments.html'>Tipovi dokumenata</a></li>
-						<li><a href='#'></a></li>
+						<li><a href='/lista-zapisnika.html'>Reklamacioni zapisnici</a></li>
 					</ul>
 				</li>								
 				
@@ -63,9 +64,11 @@
 					<ul class="nav nav-second-level">
 						<li class="divider-nesto"></li>
 					    <li><a href='/find_all_articles_partners_magacini.html'><i class="fa fa-list" ></i>Kartice artikal partner magacin-objekat</a></li>	
-						<li><a href='/find_all_articles.html'><i class="fa fa-list"></i>Kartice magacin artikal</a></li>
 						<li class="divider-nesto"></li>
 						<li><a href='/find_all_articles_partners.html'><i class="fa fa-list"></i>Kartice artikal partner</a></li>
+						<li class="divider-nesto"></li>
+						<li><a href='/find_all_articles.html'><i class="fa fa-list"></i>Kartice magacin artikal</a></li>
+						
 				
 					</ul>
 				</li>		

@@ -28,12 +28,14 @@ import javax.persistence.PreUpdate;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
@@ -86,20 +88,27 @@ public class Dokument implements Serializable {
     @ManyToOne(optional = false)
     @JoinColumn(name="id_vrsta_dokumenta")
     private TypesOfDocuments typesofdocuments;
-    
-//    @Column(name = "id_vrsta_dokumenta")
-//    private Long idVrstaDokumenta;
-    
+        
     @ManyToOne(optional = false)
     @JoinColumn(name="id_komitent")
     private Partner partner;  
     
-//    @Column(name = "id_komitent")
-//    private Long idKomitent;
+    @ManyToOne(optional = true)
+    @JoinColumn(name="id_komitent2")
+    private Partner partner2;  
+
+    @ManyToOne(optional = true)
+    @JoinColumn(name="id_magacin2")
+    private Magacini magacini2;   
+    
+    @ManyToOne(optional = true)
+    @JoinColumn(name="id_vrsta_dokumenta2")
+    private TypesOfDocuments typesofdocuments2;
     
     @Column(name = "datum")
     @Temporal(TemporalType.DATE)
-    @DateTimeFormat(pattern = "yyyy-MM-dd") 
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    @NotNull
     private Date datum;
     @Size(max = 255)
     @Column(name = "napomena")
@@ -139,6 +148,13 @@ public class Dokument implements Serializable {
     private String slika;
     private String video;
     private String zvuk;
+    private String predao;
+    private String primio;
+    private String osnov;
+    // @Value("0")
+    @Column(name = "status")
+    private int status;
+    private Long veza;
     
 //    @OneToMany(mappedBy = "idDokument", orphanRemoval = true, cascade = CascadeType.ALL)
 //    @JsonManagedReference
@@ -316,8 +332,6 @@ public class Dokument implements Serializable {
 		this.iznos_bez_poreza = iznos_bez_poreza;
 	}
 	
-	
-	
 // if you have one to many
 //	@XmlTransient
 //    public Collection<DokumentStavke> getDokumentStavkeCollection() {
@@ -360,5 +374,60 @@ public class Dokument implements Serializable {
     public String toString() {
         return "Dokument[ id=" + id + " ]";
     }
+	public String getPredao() {
+		return predao;
+	}
+	public void setPredao(String predao) {
+		this.predao = predao;
+	}
+	public String getPrimio() {
+		return primio;
+	}
+	public void setPrimio(String primio) {
+		this.primio = primio;
+	}
+	public String getOsnov() {
+		return osnov;
+	}
+	public void setOsnov(String osnov) {
+		this.osnov = osnov;
+	}
+	public TypesOfDocuments getTypesofdocuments() {
+		return typesofdocuments;
+	}
+	public void setTypesofdocuments(TypesOfDocuments typesofdocuments) {
+		this.typesofdocuments = typesofdocuments;
+	}
+	public Partner getPartner2() {
+		return partner2;
+	}
+	public void setPartner2(Partner partner2) {
+		this.partner2 = partner2;
+	}
+	public Magacini getMagacini2() {
+		return magacini2;
+	}
+	public void setMagacini2(Magacini magacini2) {
+		this.magacini2 = magacini2;
+	}
+	public TypesOfDocuments getTypesofdocuments2() {
+		return typesofdocuments2;
+	}
+	public void setTypesofdocuments2(TypesOfDocuments typesofdocuments2) {
+		this.typesofdocuments2 = typesofdocuments2;
+	}
+	public int getStatus() {
+		return status;
+	}
+	public void setStatus(int status) {
+		this.status = status;
+	}
+	public Long getVeza() {
+		return veza;
+	}
+	public void setVeza(Long veza) {
+		this.veza = veza;
+	}   
+    
     
 }

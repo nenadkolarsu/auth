@@ -30,12 +30,14 @@ import com.hellokoding.auth.model.User;
 import com.hellokoding.auth.model.VrsteArtikala;
 import com.hellokoding.auth.model.VrsteMagacina;
 import com.hellokoding.auth.model.VrstePaleta;
+import com.hellokoding.auth.model.Zapisnici;
 import com.hellokoding.auth.repository.CostumersRepository;
 import com.hellokoding.auth.repository.DokumentRepository;
 import com.hellokoding.auth.repository.DokumentStavkeRepository;
 import com.hellokoding.auth.repository.DrzaveRepository;
 import com.hellokoding.auth.repository.MagaciniRepository;
 import com.hellokoding.auth.repository.TypesOfDocumentsRepository;
+import com.hellokoding.auth.repository.ZapisniciRepository;
 import com.hellokoding.auth.repository.ZipCodesRepository;
 import com.hellokoding.auth.service.ArtikliService;
 import com.hellokoding.auth.service.JediniceMeraService;
@@ -76,6 +78,9 @@ public class RestsController {
 	private DokumentRepository dokumentRepository;
 	@Autowired
 	private MagaciniRepository magaciniRepository;
+	
+	@Autowired
+	private ZapisniciRepository zapisniciRepository;
 	
 	@Autowired
 	private DokumentStavkeRepository dokumentStavkeRepository;
@@ -243,7 +248,7 @@ public class RestsController {
 //		        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy' 'HH:mm:ss:S");
 
 		        Date tt = pttBrojevi.getTimestamp();
-		        pttBrojevi.setVideo(simpleDateFormat.format(tt));
+//		        pttBrojevi.setVideo(simpleDateFormat.format(tt));
 
 		}
 
@@ -262,10 +267,11 @@ public class RestsController {
 					+ "            <a href=\"delete_customer.html?id=" + partner.getId() + "\" Onclick=\"return ConfirmDelete();\"> " + "<i class=\"fa fa-trash-o edit-delete-icon\"></i> </a>");
 			 
 		        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy'");
+		        
 //		        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy' 'HH:mm:ss:S");
 
-		        Date tt = partner.getTimestamp();
-		        partner.setVideo(simpleDateFormat.format(tt));
+//		        Date tt = partner.getTimestamp();
+//		        partner.setVideo(simpleDateFormat.format(tt));
 
 		}
 
@@ -276,8 +282,8 @@ public class RestsController {
 	@RequestMapping(path="/dokumenti", method=RequestMethod.GET)
 	public List<Dokument> getJsonDokumenti(){
 		
-		List<Dokument> aa = dokumentRepository.findAll();
-	
+		 List<Dokument> aa = dokumentRepository.findAll(); // .findAllByOrderByIdDesc(); //
+				
 		 for (Iterator iterator = aa.iterator(); iterator.hasNext();) {
 			 Dokument dokument = (Dokument) iterator.next();
 			 dokument.setAkcija("<a href=\"update_dokument.html?id=" + dokument.getId() + "\"> " + "<i class=\"fa fa-pencil-square-o edit-delete-icon\"></i> </a> "
@@ -294,7 +300,69 @@ public class RestsController {
 		}
 
 		return aa; 
-	}		
+	}
+	
+	@RequestMapping(path="/dokumentiTypeNot2", method=RequestMethod.GET)
+	public List<Dokument> getTypeNot2(){
+		
+		// List<Dokument> aa = dokumentRepository.findAll(); // .findAllByOrderByIdDesc(); //
+		
+		List<Dokument> aa = dokumentRepository.findDokTypeNot2();
+		 for (Iterator iterator = aa.iterator(); iterator.hasNext();) {
+			 Dokument dokument = (Dokument) iterator.next();
+			 dokument.setAkcija("<a href=\"update_dokument.html?id=" + dokument.getId() + "\"> " + "<i class=\"fa fa-pencil-square-o edit-delete-icon\"></i> </a> "
+					+ "    <a href=\"delete_dokument.html?id=" + dokument.getId() + "\" Onclick=\"return ConfirmDelete();\"> " + "<i class=\"fa fa-trash-o edit-delete-icon\"></i> </a>"
+					+  "<a href=\"www.w3schools.com\">Visit W3Schools</a> "
+					+ "     <a href=\"view_dokument_items.html?id=" + dokument.getId()  + "\"> " + "<i class=\"fa fa-id-card-o\"></i> </a>");
+			 
+		        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy'");
+		        Date tt = dokument.getDatumVreme();
+		}
+
+		return aa; 
+	}	
+
+	@RequestMapping(path="/dokumentiTypeIs2", method=RequestMethod.GET)
+	public List<Dokument> getTypeIs2(){
+		
+		List<Dokument> aa = dokumentRepository.findDokTypeIs2();
+		
+		 for (Iterator iterator = aa.iterator(); iterator.hasNext();) {
+			 Dokument dokument = (Dokument) iterator.next();
+			 dokument.setAkcija("<a href=\"update_mmp.html?id=" + dokument.getId() + "\"> " + "<i class=\"fa fa-pencil-square-o edit-delete-icon\"></i> </a> "
+					+ "    <a href=\"delete_mmp.html?id=" + dokument.getId() + "\" Onclick=\"return ConfirmDelete();\"> " + "<i class=\"fa fa-trash-o edit-delete-icon\"></i> </a>"
+					+  "<a href=\"www.w3schools.com\">Visit W3Schools</a> "
+					+ "     <a href=\"view_dokument_items.html?id=" + dokument.getId()  + "\"> " + "<i class=\"fa fa-id-card-o\"></i> </a>");
+			 
+		        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy'");
+		        Date tt = dokument.getDatumVreme();
+		}
+
+		return aa; 
+	}	
+	
+	@RequestMapping(path="/zapisnici", method=RequestMethod.GET)
+	public List<Zapisnici> getJsonZapisnici(){
+		
+		List<Zapisnici> aa = zapisniciRepository.findAll();
+	
+		 for (Iterator iterator = aa.iterator(); iterator.hasNext();) {
+			 Zapisnici zapisnik = (Zapisnici) iterator.next();
+			 zapisnik.setAkcija("<a href=\"update-zapisnik.html?id=" + zapisnik.getId() + "\"> " + "<i class=\"fa fa-pencil-square-o edit-delete-icon\"></i> </a> "
+					+ "    <a href=\"delete_dokument.html?id=" + zapisnik.getId() + "\" Onclick=\"return ConfirmDelete();\"> " + "<i class=\"fa fa-trash-o edit-delete-icon\"></i> </a>"
+					+  "<a href=\"www.w3schools.com\">Visit W3Schools</a> "
+					+ "     <a href=\"view_dokument_items.html?id=" + zapisnik.getId()  + "\"> " + "<i class=\"fa fa-id-card-o\"></i> </a>");
+			 
+		        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy'");
+//		        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy' 'HH:mm:ss:S");
+
+		        //Date tt = zapisnik.getDatumVreme();
+//		        dokument.setVideo(simpleDateFormat.format(tt));
+
+		}
+
+		return aa; 
+	}	
 	
 	@RequestMapping(path="/dokumentstavketest1", method=RequestMethod.GET)
 	public List<DokumentStavke> getJsonDokumentiStavkeRest(@RequestParam(value="id") Long id){

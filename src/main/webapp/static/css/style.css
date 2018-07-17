@@ -16,7 +16,8 @@
 }
 
 .edit-delete-icon {font-size: 20px;
-	margin: 0 15px 0 15px;
+	margin: 0 0px 0 10px; 
+/* 	0 15 0 15 */
 }
 
 .button-novi{
@@ -245,3 +246,5 @@ table.dataTable.no-footer{
     overflow: hidden;
     background-color: #e5e5e5;
 }
+
+.clear-padding {padding: 0 5px 0 0;}
