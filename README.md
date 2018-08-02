@@ -11,6 +11,8 @@ JPA Repositories used to provide CRUD functionality for all entities.
 View layer is defined as a JSP or HTML pages that using AngularJS or DataTables Table plugin for Jquery. 
 All forms contain pagination, instant search, and multi-column ordering.
 Short video presentation available at: https://www.youtube.com/watch?v=JQEW7JPApR8&t=11s
+Brief project structure preview available at https://www.youtube.com/watch?v=s7ZLk0HHyCs
+
 
 
 
